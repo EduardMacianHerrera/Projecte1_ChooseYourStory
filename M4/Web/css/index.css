@@ -1,0 +1,114 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	background-color: #f3f3f3;
+	font-family: sans-serif;
+}
+
+
+/*HEADER*/
+
+header, .main, footer{
+	width: 90%;
+	margin: auto;
+	min-width: 780px;
+}
+
+header{
+	background-color: #ffbd00;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.headerLogo{
+	width: 30%;
+	display: flex;
+	align-items: center;
+}
+
+.headerLogo img{
+	width: 64px;
+	height: 64px;
+}
+
+.headerMenu{
+	width: 70%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.headerMenu a {
+	display: inline-block;
+	color: white;
+	font-size: 20px;
+	margin: 20px;
+	text-decoration: none;
+}
+
+nav a:hover{
+	color: black;
+}
+
+/*HEADER*/
+
+
+
+/*FOOTER*/
+
+footer{
+	background-color: #ffbd00;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+footer div a img{
+	height: 40px;
+	width: 40px;
+	margin: 5px 10px;
+}
+
+footer p{
+	margin-left: 20px;
+}
+
+/*FOOTER*/
+
+
+/*MAIN*/
+article{
+	background-color: white;
+	margin:20px 0px;
+	border: solid black 2px;
+	border-radius: 10px;
+
+}
+
+
+article p{
+	text-indent:20px; /*Sangria primer parrafo*/
+}
+
+
+article img{
+	height: 150px;
+	width: 150px;
+}
+
+article p a{
+	font-style: italic;
+}
+
+
+
+
+/*MAIN*/
