@@ -4,21 +4,21 @@
 }
 
 body{
-	background-color: #f3f3f3;
+	background-color: #1b2d3f;
 	font-family: sans-serif;
 }
 
 
 /*HEADER*/
 
-header, .main, footer{
-	width: 90%;
-	margin: auto;
-	min-width: 780px;
-}
-
 header{
-	background-color: #ffbd00;
+	width: 100%;
+	position: fixed;
+	top:0px;
+	left:au;
+	background-color: #111111;
+	min-width: 1267px;
+	/*Flexbox*/
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -28,32 +28,50 @@ header{
 .headerLogo{
 	width: 30%;
 	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 	align-items: center;
+	color:white;
 }
 
 .headerLogo img{
+	margin: 10px 10px 10px 20px;
 	width: 64px;
 	height: 64px;
 }
 
 .headerMenu{
 	width: 70%;
+	/*Flexbox*/
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	flex-wrap: wrap;
+	justify-content:flex-end;
 	align-items: center;
 }
+
+.headerMenu nav{
+	margin-right: 20px;
+}
+
 
 .headerMenu a {
 	display: inline-block;
 	color: white;
 	font-size: 20px;
-	margin: 20px;
+	padding: 20px;
 	text-decoration: none;
 }
 
-nav a:hover{
-	color: black;
+header div nav a:hover{
+	background-color: rgb(97, 97, 97);
+	border-bottom: solid red 5px;
+	border-radius: 5px;
+}
+
+
+.search{
+	margin-right: 20px;
 }
 
 /*HEADER*/
@@ -63,7 +81,12 @@ nav a:hover{
 /*FOOTER*/
 
 footer{
-	background-color: #ffbd00;
+	background-color: #111111;
+	width: 100%;
+	height: 70px;
+	position:absolute;
+
+	/*Fexbox*/
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -72,12 +95,18 @@ footer{
 }
 
 footer div a img{
-	height: 40px;
-	width: 40px;
+	height: 30px;
+	width: 30px;
 	margin: 5px 10px;
 }
 
+.media{
+	margin-right: 20px;
+}
+
+
 footer p{
+	color:white;
 	margin-left: 20px;
 }
 
@@ -85,6 +114,18 @@ footer p{
 
 
 /*MAIN*/
+
+.main h2, h3{
+	color:rgb(199, 199, 199);
+}
+
+.main{
+	width: 50%;
+	margin:auto;
+	margin-top: 100px;
+}
+
+
 article{
 	background-color: white;
 	margin:20px 0px;
@@ -107,7 +148,6 @@ article img{
 article p a{
 	font-style: italic;
 }
-
 
 
 
