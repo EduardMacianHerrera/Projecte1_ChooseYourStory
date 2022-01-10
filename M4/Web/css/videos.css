@@ -1,3 +1,7 @@
-.parrafo{
-	border: solid black 1px;
+/*Fomarto con letra capital en cada parrafo, como pide
+son embargo no se que es lo que pide de "justificado"*/
+
+p::first-letter{
+	font-size: 3em;
+	margin: 2px;
 }

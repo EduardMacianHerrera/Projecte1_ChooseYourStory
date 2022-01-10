@@ -4,13 +4,33 @@
 }
 
 .Integrante{
+	width: 1000px;
 	display: flex;
 	flex-direction: row;
-
+	font-size: 16px;
+	border: solid black 1px;
 }
 
 .Imagen_integrante{
 	width: 200px;
 	height: 200px;
-	background-color: blue;
+	background-color: lightblue;
+	border: solid darkblue; 2px;
 }
+
+#Imagen_Albert{
+	background-image:;
+}
+
+#Imagen_Edu{
+	background-image:;
+}
+
+#Imagen_Irene{
+	background-image:;
+}
+
+#Imagen_Sergio{
+	background-image:;
+}
+
