@@ -1,0 +1,47 @@
+.Integrante{
+	width: 1000px;
+	height: 250px;
+	display: flex;
+	flex-direction: row;
+	font-size: 16px;
+	border: solid black 1px;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+.Nombre{
+	text-align: center;
+	margin-top: 2px;
+}
+
+
+.Imagen_integrante{
+	width: 200px;
+	height: 200px;
+	margin: 10px;
+	background-color: lightblue;
+	border: solid darkblue; 2px;
+}
+
+#Imagen_Albert{
+	background-image:;
+}
+
+#Imagen_Edu{
+	background-image:;
+}
+
+#Imagen_Irene{
+	background-image:;
+}
+
+#Imagen_Sergio{
+	background-image:;
+}
+
+p{
+	width: 600px;
+	margin: 10px;
+}
+
+

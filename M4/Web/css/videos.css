@@ -1,0 +1,10 @@
+/*Fomarto con letra capital en cada parrafo y texto justificado"*/
+
+p::first-letter{
+	font-size: 3em;
+	margin: 2px;
+}
+
+p{
+	width: 800px;
+	text-align: justify;
