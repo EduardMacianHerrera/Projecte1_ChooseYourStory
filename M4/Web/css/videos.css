@@ -1,4 +1,8 @@
 /*Fomarto con letra capital en cada parrafo y texto justificado"*/
+*{
+	margin: 0px;
+	padding: 0px;
+}
 
 body{
 	background-color: #1b2d3f;

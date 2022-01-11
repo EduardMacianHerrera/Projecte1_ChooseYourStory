@@ -1,3 +1,8 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
 body{
 	background-color: #1b2d3f;
 	font-family: sans-serif;
