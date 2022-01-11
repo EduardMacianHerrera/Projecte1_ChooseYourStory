@@ -1,3 +1,109 @@
+body{
+	background-color: #1b2d3f;
+	font-family: sans-serif;
+}
+
+/*HEADER*/
+
+header{
+	width: 100%;
+	position: fixed;
+	top:0px;
+	left:au;
+	background-color: #111111;
+	min-width: 1267px;
+	/*Flexbox*/
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.headerLogo{
+	width: 30%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	color:white;
+}
+
+.headerLogo img{
+	margin: 10px 10px 10px 20px;
+	width: 64px;
+	height: 64px;
+}
+
+.headerMenu{
+	width: 70%;
+	/*Flexbox*/
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content:flex-end;
+	align-items: center;
+}
+
+.headerMenu nav{
+	margin-right: 20px;
+}
+
+
+.headerMenu a {
+	display: inline-block;
+	color: white;
+	font-size: 20px;
+	padding: 20px;
+	text-decoration: none;
+}
+
+header div nav a:hover{
+	background-color: rgb(97, 97, 97);
+	border-bottom: solid red 5px;
+	border-radius: 5px;
+}
+
+
+.search{
+	margin-right: 20px;
+}
+
+/*HEADER*/
+
+/*FOOTER*/
+
+footer{
+	background-color: #111111;
+	width: 100%;
+	height: 70px;
+	position:absolute;
+
+	/*Fexbox*/
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+footer div a img{
+	height: 30px;
+	width: 30px;
+	margin: 5px 10px;
+}
+
+.media{
+	margin-right: 20px;
+}
+
+
+footer p{
+	color:white;
+	margin-left: 20px;
+}
+
+/*FOOTER*/
+
 .Integrante{
 	width: 1000px;
 	height: 250px;
