@@ -4,7 +4,6 @@ def formatText(text, lenLine, split):
     try:
         phrase =""
         word =""
-        word2 =""
         to_print =""
         count =0
         for i in (text +" "):
@@ -21,10 +20,9 @@ def formatText(text, lenLine, split):
                     word=""
             count +=1
         to_print = to_print +split +phrase
-        to_print =to_print +split +word2
         return to_print
     except:
-        if ValueError:
+        if len(word) > lenLine:
             return("Al menos una de las palabras tiene una longitud superior a la de la linea\n"
                    "y no se puede formatar correctamente el parrafo")
         else:
