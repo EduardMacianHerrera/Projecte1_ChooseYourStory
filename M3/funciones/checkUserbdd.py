@@ -1,15 +1,8 @@
-import mysql.connector
+from funciones.createCon import createConn
 
-user = input("User: ")
-password = input("Password: ")
 
 def checkUserbdd(user,password):
-  mydb = mysql.connector.connect(
-    host="debiansql.westeurope.cloudapp.azure.com",
-    user="edu",
-    password="edu",
-    database="project"
-  )
+  mydb = createConn()
 
   mycursor = mydb.cursor()
   mycursor.execute("select username from USER")
