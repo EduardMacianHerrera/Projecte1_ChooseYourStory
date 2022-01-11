@@ -11,13 +11,18 @@ dic_adventures ={
 
 def getFormatedAdventures(adventures):
 
-    prueba = "\n" + "=" * 20 + "Adventures" + "="* 20 + "\n" + "Id Adventure".ljust(20) + \
-             "Adventure".ljust(20) + "Description".ljust(20)
+    header = "\n" + "=" * 20 + "Adventures" + "="* 20 + "\n" + "Id Adventure".ljust(20) + \
+             "Adventure".ljust(20) + "Description".ljust(20) + "\n" + "*" * (len("Adventures") + 40) + "\n"
 
+    dictData = ""
 
+    for i in adventures:
+        dictData += "\n" + str(i).ljust(20) + adventures[i]["Name"].ljust(20) + \
+                   adventures[i]["Description"].ljust(20)
 
-
-    return prueba
+    return header + dictData
 
 
 print(getFormatedAdventures(dic_adventures))
+
+
