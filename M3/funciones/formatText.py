@@ -29,5 +29,3 @@ def formatText(text, lenLine, split):
                    "y no se puede formatar correctamente el parrafo")
         else:
             return("La funcion formatText no se ha ejecutado correctamente")
-
-print(formatText(text1, 18, "\n"))
