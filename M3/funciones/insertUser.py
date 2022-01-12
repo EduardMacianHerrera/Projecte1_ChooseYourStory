@@ -1,6 +1,6 @@
 from funciones.createCon import createConn
 
-# Pone que hay un parametro id pero la pk ID es autoincremental
+# Poner la id
 
 def insertUser(user,password):
     mydb = createConn()

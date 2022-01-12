@@ -31,12 +31,12 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `project`.`CHARACTER`
+-- Table `project`.`CHARACTERS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `project`.`CHARACTER` (
-  `ID_CHARACTER` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `project`.`CHARACTERS` (
+  `ID_CHARACTER` INT NOT NULL AUTO_INCREMENT,
   `character_name` VARCHAR(45) NOT NULL,
-  `description` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(250) NOT NULL,
   `user_creation` VARCHAR(45) NOT NULL,
   `date_creation` DATETIME NOT NULL,
   `date_mod` DATETIME NOT NULL,
@@ -50,7 +50,7 @@ ENGINE = InnoDB;
 -- Table `project`.`RECORD`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `project`.`RECORD` (
-  `ID_RECORD` INT NOT NULL,
+  `ID_RECORD` INT NOT NULL AUTO_INCREMENT,
   `user_creation` VARCHAR(45) NOT NULL,
   `date_creation` DATETIME NOT NULL,
   `date_mod` DATETIME NOT NULL,
@@ -63,9 +63,9 @@ ENGINE = InnoDB;
 -- Table `project`.`ADVENTURE`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `project`.`ADVENTURE` (
-  `ID_ADVENTURE` INT NOT NULL,
+  `ID_ADVENTURE` INT NOT NULL AUTO_INCREMENT,
   `adventure_name` VARCHAR(45) NOT NULL,
-  `description` VARCHAR(1000) NOT NULL,
+  `description` VARCHAR(250) NOT NULL,
   `user_creation` VARCHAR(45) NOT NULL,
   `date_creation` DATETIME NOT NULL,
   `date_mod` DATETIME NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `project`.`GAME` (
   INDEX `fk_adventure_game_idx` (`FK_ID_ADVENTURE` ASC) VISIBLE,
   CONSTRAINT `fk_character_game`
     FOREIGN KEY (`FK_ID_CHARACTER`)
-    REFERENCES `project`.`CHARACTER` (`ID_CHARACTER`)
+    REFERENCES `project`.`CHARACTERS` (`ID_CHARACTER`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_game`
@@ -120,19 +120,27 @@ ENGINE = InnoDB;
 -- Table `project`.`STEP`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `project`.`STEP` (
-  `ID_STEP` INT NOT NULL,
-  `description` VARCHAR(45) NOT NULL,
+  `ID_STEP` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(500) NOT NULL,
   `the_end` BIT NOT NULL,
+  `start` BIT NOT NULL,
   `user_creation` VARCHAR(45) NOT NULL,
   `date_creation` DATETIME NOT NULL,
   `date_mod` DATETIME NOT NULL,
   `user_mod` VARCHAR(45) NOT NULL,
   `FK_ID_ADVENTURE` INT NOT NULL,
+  `FK_ID_STEP` INT NOT NULL,
   PRIMARY KEY (`ID_STEP`),
   INDEX `fk_adventure_step_idx` (`FK_ID_ADVENTURE` ASC) VISIBLE,
+  INDEX `fk_STEP_STEP1_idx` (`FK_ID_STEP` ASC) VISIBLE,
   CONSTRAINT `fk_adventure_step`
     FOREIGN KEY (`FK_ID_ADVENTURE`)
     REFERENCES `project`.`ADVENTURE` (`ID_ADVENTURE`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_step_step`
+    FOREIGN KEY (`FK_ID_STEP`)
+    REFERENCES `project`.`STEP` (`ID_STEP`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -142,8 +150,8 @@ ENGINE = InnoDB;
 -- Table `project`.`OPTION`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `project`.`OPTION` (
-  `ID_OPTION` INT NOT NULL,
-  `description` VARCHAR(45) NOT NULL,
+  `ID_OPTION` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(500) NOT NULL,
   `user_creation` VARCHAR(45) NOT NULL,
   `date_creation` DATETIME NOT NULL,
   `date_mod` DATETIME NOT NULL,
@@ -190,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `project`.`STARS` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_character_stars`
     FOREIGN KEY (`FK_ID_CHARACTER`)
-    REFERENCES `project`.`CHARACTER` (`ID_CHARACTER`)
+    REFERENCES `project`.`CHARACTERS` (`ID_CHARACTER`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -266,13 +274,22 @@ ENGINE = InnoDB;
 -- Table `project`.`ANSWER`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `project`.`ANSWER` (
-  `ID_ANSWER` INT NOT NULL,
+  `ID_ANSWER` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(1000) NOT NULL,
   `FK_ID_OPTION` INT NOT NULL,
+  `ANSWER_ID_ANSWER` INT NOT NULL,
+  `ANSWER_FK_ID_OPTION` INT NOT NULL,
   PRIMARY KEY (`ID_ANSWER`, `FK_ID_OPTION`),
   INDEX `fk_option_answer_idx` (`FK_ID_OPTION` ASC) VISIBLE,
+  INDEX `fk_ANSWER_ANSWER1_idx` (`ANSWER_ID_ANSWER` ASC, `ANSWER_FK_ID_OPTION` ASC) VISIBLE,
   CONSTRAINT `fk_option_answer`
     FOREIGN KEY (`FK_ID_OPTION`)
     REFERENCES `project`.`OPTION` (`ID_OPTION`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ANSWER_ANSWER1`
+    FOREIGN KEY (`ANSWER_ID_ANSWER` , `ANSWER_FK_ID_OPTION`)
+    REFERENCES `project`.`ANSWER` (`ID_ANSWER` , `FK_ID_OPTION`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
