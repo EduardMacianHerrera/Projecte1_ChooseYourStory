@@ -8,7 +8,6 @@ body{
 	font-family: sans-serif;
 }
 
-
 /*HEADER*/
 
 header{
@@ -76,8 +75,6 @@ header div nav a:hover{
 
 /*HEADER*/
 
-
-
 /*FOOTER*/
 
 footer{
@@ -85,6 +82,7 @@ footer{
 	width: 100%;
 	height: 70px;
 	position:absolute;
+	bottom: 0px;
 
 	/*Fexbox*/
 	display: flex;
@@ -112,110 +110,19 @@ footer p{
 
 /*FOOTER*/
 
-
-/*SECTION MENU*/
-.sectionMenu{
-	margin-top: 84px;
-	width: 100%;
-	background-color: #121d29;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-}
-
-
-.sectionMenu a{
-	display: inline-block;
-	margin: 0px 10px;
-	padding: 10px;
-	text-decoration: none;
-	color: white;
-}
-
-
-.sectionMenu a:hover{
-	background-color: rgb(97, 97, 97);
-}
-
-/*SECTION MENU*/
-
-
-/*MAIN*/
-
-.main h2, h3{
-	color:rgb(199, 199, 199);
-}
-
-.main{
-	width: 50%;
-	margin:auto;
-	margin-top: 50px;
-}
-
-
-article{
-	background-color: #1b2d3f;
-	margin:20px 0px;
+#Datos_contacto{
+	width: 90%;
+	margin: 95px 10px;
 	border: solid #cb1326 2px;
 	border-radius: 10px;
-	color:rgb(199, 199, 199);
+	color: rgb(199, 199, 199);
 }
 
-
-article p{
-	text-align: justify;
+h3{
+	margin: 40px 20px;
 }
 
-
-.articleP1{
-	text-indent:20px; /*Sangria primer parrafo*/
+#Titulo{
+	margin: 20px 20px;
+	margin-bottom: 60px;
 }
-
-article img{
-	height: 150px;
-	width: 150px;
-}
-
-article p a{
-	font-style: italic;
-}
-
-.article {
-
-	/*Grid layaut*/
-	display: grid;
-	grid-template-columns: 70% 30%;
-	grid-template-rows: 50% 50%;
-	grid-template-areas: "area1 area2"
-						 "area3 area3";
-}
-
-.articleImg{
-	grid-area: area2 ;
-}
-
-.articleP1{
-	grid-area: area1;
-}
-
-.articleP2{
-	grid-area: area3;
-}
-
-
-.article p{
-	margin: 10px;
-}
-
-#seccion1, #seccion2, #seccion3{
-	margin: 20px;
-}
-
-.gitLink{
-	color: white;
-}
-
-
-
-/*MAIN*/
