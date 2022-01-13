@@ -31,21 +31,4 @@ def formatText(text, lenLine, split):
                    "y no se puede formatar correctamente el parrafo")
         else:
             return("La funcion formatText no se ha ejecutado correctamente")
-def getFormatedBodyColumns(tupla_texts,tupla_sizes,margin=0):
-    try:
-        if len(tupla_texts) !=len(tupla_sizes):
-            raise ValueError
-        count =0
-        for i in tupla_texts:
-            print(formatText(i, tupla_sizes[count], "\n"))
-            count +=1
-    except:
-        if len(tupla_texts) !=len(tupla_sizes):
-            print("La tupla de textos y la tupla de tamaños no tienen la misma longitud\n"
-                  "y no se puede ejecutar correctamente el formateo")
-        else:
-            print("La funcion getFormatedBodyColumns no se ha ejecutado correctamente")
 
-tupla_t = (t1, t1, t1)
-sizes = (20, 30, 50)
-getFormatedBodyColumns(tupla_t,sizes)
