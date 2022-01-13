@@ -1,0 +1,293 @@
+use project;
+
+delete from ADVENTURE;
+
+# Inserts CHARACTERS
+
+INSERT INTO `CHARACTER`(character_name, description, user_creation, date_creation) 
+VALUES 
+('Vegeta','Príncipe de una raza guerrera extraterrestre conocida como los Saiyajin.', user(), now()),
+('Itachi','Ninja renegado considerado un prodigio y portador de numerosas cualidades sobresalientes', user(), now()),
+('Zoro','Espadachín experto en el Santōryū (estilo de tres espadas) Valiente, fuerte y bastante temperamental', user(), now()),
+('Jack Sparrow','Legendario pirata de Todos los Mares y un irreverente embaucador del Caribe.', user(), now());
+
+# Inserts ADVENTURE
+
+INSERT INTO ADVENTURE(adventure_name,description,user_creation,date_creation) 
+VALUES 
+# Historia 1
+("En busca de la gráfica perdida","Busca el tesoro oculto, disfruta de una aventura a través de las mazmorras Morgul. Encuentra, enfrenta y supera cada desafío que te encuentres por el camino hasta descubrir que final es el que te espera.",user(),now()),
+#Historia 2
+("Un examen desastroso","Te despiertas un día de examen, no te ha sonado la alarma. Decide que vas a hacer, pero cuidado con las decisiones que tomas, toda acción tiene su consecuencia ya sea para bien o para mal.",user(),now()),
+#Historia 3
+("Póker interdimensional","Juega una o varias partidas de poker interdimensional. Recuerda que no todo depende de la mano que te toque sino de como juegues tus cartas. A veces retirarse a tiempo es una victoria (o no).",user(),now());
+
+# Inserts STEP
+insert into STARS(ID_ADVENTURE,ID_CHARACTER) values 
+((select ID_ADVENTURE from ADVENTURE where adventure_name = "En busca de la gráfica perdida"),(select ID_CHARACTER from `CHARACTER` where character_name = "Jack Sparrow")),
+((select ID_ADVENTURE from ADVENTURE where adventure_name = "Un examen desastroso"),(select ID_CHARACTER from `CHARACTER` where character_name = "Zoro")),
+((select ID_ADVENTURE from ADVENTURE where adventure_name = "Un examen desastroso"),(select ID_CHARACTER from `CHARACTER` where character_name = "Itachi")),
+((select ID_ADVENTURE from ADVENTURE where adventure_name = "Un examen desastroso"),(select ID_CHARACTER from `CHARACTER` where character_name = "Jack Sparrow")),
+((select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional"),(select ID_CHARACTER from `CHARACTER` where character_name = "Vegeta")),
+((select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional"),(select ID_CHARACTER from `CHARACTER` where character_name = "Zoro")),
+((select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional"),(select ID_CHARACTER from `CHARACTER` where character_name = "Itachi")),
+((select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional"),(select ID_CHARACTER from `CHARACTER` where character_name = "Jack Sparrow"))
+;
+
+# Inserts STEP
+
+insert into STEP(description,the_end,start,user_creation,date_creation,ID_ADVENTURE) values 
+# Historia 1
+# Primer Paso
+("Estás en una misión dentro de unas mazmorras con el fin de conseguir el gran tesoro; Una RTX3090 Ti. Te encuentras un arsenal lleno de armas de todo tipo, que escoges?", 0,1,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "En busca de la gráfica perdida")),
+# Pasos intermedios
+("Que haces?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "En busca de la gráfica perdida")),
+#Final 1
+("Le caes bien, os haceis amigos y buscais la grafica juntos. Finalmente la acabas vendiendo por esteroides y te vuelves culturista. FIN", 1,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "En busca de la gráfica perdida"));
+
+# Insert OPTION
+
+insert into `OPTION`(description,answer,user_creation,date_creation,ID_STEP_FROM,ID_STEP_TO) values
+("Armas de fuego","Aparece Joseph Joestar",user(),now(),(
+	select ID_STEP from STEP where description = 
+    "Estás en una misión dentro de unas mazmorras con el fin de conseguir el gran tesoro; Una RTX3090 Ti. Te encuentras un arsenal lleno de armas de todo tipo, que escoges?"),(
+    select ID_STEP from STEP where description = 
+    "Que haces?")),
+("Te pones a hacer Jojo poses con él.","",user(),now(),(
+	select ID_STEP from STEP where description = 
+    "Que haces?"),(
+    select ID_STEP from STEP where description = 
+    "Le caes bien, os haceis amigos y buscais la grafica juntos. Finalmente la acabas vendiendo por esteroides y te vuelves culturista. FIN"));
+
+
+
+
+
+# Insert STEP
+# Historia 3
+
+INSERT INTO STEP(description,the_end,start,user_creation,date_creation,ID_ADVENTURE) 
+VALUES
+
+("Necesitas dinero para comprar  RAM , ya que actualmente tu ordenador no puede correr dos maquinas virtuales simulataneamente y lo necesitas para un trabajo.
+Decides ir a jugar a Poker a la cantina interdimensional para conseguir dinero rapido.
+Llegas a la cantina y la unica mesa a la que te puedes unir es una que van a empezar Shrek, Tobey Maguire, mister Bean, Hermione Granger y un Loro Pirata entrenado. 
+Decides unirte. Hay dos sillas libres, donde te sientas?", 
+0,1,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Quieres jugar?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Tu siguiente movimiento?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Doblas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Igualas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Continuas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Que harás?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Que haces?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Quieres volver a jugar?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Te unes a el?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Otra partida?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Te apuntas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+#FINAL
+("Abandonas la cantina. FIN", 1,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional"));
+
+
+# Insert OPTION
+
+INSERT INTO `OPTION`
+(description,
+answer,
+user_creation,
+date_creation,
+ID_STEP_FROM,
+ID_STEP_TO)
+ 
+VALUES
+(
+"Al lado de Tobey Maguire,
+	el Spiderman de tu infancia",
+"Se hace la apuesta incial, cada uno apuesta una ficha.
+	Se reparten las dos cartas por jugador, te tocan el 2 de corazones y el 5 de picas.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+	"Necesitas dinero para comprar  RAM , ya que actualmente tu ordenador no puede correr dos maquinas virtuales simulataneamente y lo necesitas para un trabajo.
+	Decides ir a jugar a Poker a la cantina interdimensional para conseguir dinero rapido.
+	Llegas a la cantina y la unica mesa a la que te puedes unir es una que van a empezar Shrek, Tobey Maguire, mister Bean, Hermione Granger y un Loro Pirata entrenado. Decides unirte.
+	Hay dos sillas libres, ¿Donde te sientas?"),
+(select ID_STEP from STEP where description = 
+	"¿Quieres jugar?")
+),
+
+(
+"Si",
+"Tobey Maguire se retira.
+	Se colocan las 3 cartas visibles sobre la mesa.
+	Son el 4 de diamante, el 5 de corazones y la k de diamante.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Quieres jugar?"),
+(select ID_STEP from STEP where description = 
+    "¿Tu siguiente movimiento?"))
+
+(
+"Continuas y 
+	duplicas la apuesta",
+"Hermione se retira. El resto igualan tu apuesta y continua el juego.
+	Se revela otra carta, el as de diamante",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Tu siguiente movimiento?"),
+(select ID_STEP from STEP where description = 
+    "¿Doblas?"))
+
+(
+"¡Si!",
+"Ultima carta!
+	Es el 2 de diamante.
+	Mr Bean sube mucho la apuesta. Shrek se retira. El loro iguala la apuesta dispuesto a todo.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Doblas?"),
+(select ID_STEP from STEP where description = 
+    "¿Igualas?"))
+
+(
+"Si",
+"",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Igualas?"),
+(select ID_STEP from STEP where description = 
+    "Mr Bean revela sus cartas, el 2 de diamantes y el 4 de treboles, tiene doble pareja, al igual que tu. 
+	El loro revela sus cartas, pareja de K y, tras ver que ha perdido bastante dinero, profiere una serie de graznidos e insultos en portugués.
+	Mr Bean se muestra confundido con los numeros. Hermione le aclara con palillos de madera y dibujitos de ketchup en las servilletas 
+	que el 5 es mayor que el 4 y que por lo tanto tu has ganado por carta alta. Mr Bean acepta afligido su derrota y estrecha la mano en senyal de caballerosidad.
+	Dado que has logrado una buena cantidad de dinero, decides no jugar mas, pero invitas a una ronda a todos los participantes.")
+)
+
+(
+"No",
+"Te retiras y esperas a la siguiente partida.
+	Mr Bean gana la partida con doble pareja de 4 y de 2.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Quieres jugar?"),
+(select ID_STEP from STEP where description = 
+    "Se hace la apuesta inicial, cada uno apuesta una ficha.
+	Se reparten las dos cartas por jugador, te tocan el 3 de picas y la J de diamante
+	¿Quieres volver a jugar?")
+)
+
+(
+"Continuas e 
+	igualas la apuesta",
+"Hermione se retira.
+	Se revela otra carta, el as de diamante",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Tu siguiente movimiento?"),
+(select ID_STEP from STEP where description = 
+    "¿Doblas?")
+)
+
+(
+"No, solo 
+	igualas la apuesta",
+"Ultima carta!
+	Es el 2 de diamante.
+	Nadie sube la apuesta",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Doblas?"),
+(select ID_STEP from STEP where description = 
+    "¿Continuas?")
+)
+
+(
+"Si",
+"Mr Bean revela sus cartas, el 2 de diamantes y el 4 de treboles, tiene doble pareja, al igual que tu. El loro revela sus cartas, pareja de K.
+	Has ganado, pero aun no tienes suficiente dinero.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Continuas?"),
+(select ID_STEP from STEP where description = 
+    "¿Que harás?")
+)
+
+(
+"Dejar de jugar,
+	ya buscarás alguna forma
+	de hacer la práctica de las MVs",
+"resultado",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Que harás?"),
+(select ID_STEP from STEP where description = 
+    "Abandonas la cantina. FIN")
+)
+
+(
+"opcion",
+"resultado",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "pregunta origen"),
+(select ID_STEP from STEP where description = 
+    "pregunta resultante")
+)
+
+(
+"opcion",
+"resultado",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "pregunta origen"),
+(select ID_STEP from STEP where description = 
+    "pregunta resultante")
+)
+
+(
+"opcion",
+"resultado",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "pregunta origen"),
+(select ID_STEP from STEP where description = 
+    "pregunta resultante")
+)
+
+(
+"opcion",
+"resultado",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "pregunta origen"),
+(select ID_STEP from STEP where description = 
+    "pregunta resultante")
+)
+
+;
+
