@@ -101,30 +101,73 @@ footer div a img{
 	margin-right: 20px;
 }
 
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
 
+/*Por alguna razón, el copyright se ve en tamaño 32 y negrita, lo he ajustado manualmente para que sea igual a los otros copyright*/
 footer p{
 	color:white;
 	margin-left: 20px;
+	font-size: 16px;
+	font-weight: normal;
 }
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
 
 /*FOOTER*/
 
-.Integrante{
-	width: 1000px;
-	height: 250px;
+#Contenedor_sobre_nosotros{
+	margin-top: 90px;
+}
+
+#Lista_integrantes{
 	display: flex;
 	flex-direction: row;
+}
+
+.Integrante{
+	width: 25%;
+	display: flex;
+	flex-direction: column;
 	font-size: 16px;
-	border: solid black 1px;
-	margin-top: 10px;
-	margin-right: 10px;
+	margin: 10px;
+	border: solid #cb1326 2px;
+	border-radius: 10px;
+	color:rgb(199, 199, 199);
+	align-items: center;
+}
+
+#Titulo{
+	height: 50px;
+	margin: 10px;
+	padding: 10px;
+	border: solid #cb1326 2px;
+	border-radius: 10px;
+	color:rgb(199, 199, 199);
+	text-align: center;
+	font-size: 30px;
 }
 
 .Nombre{
 	text-align: center;
-	margin-top: 2px;
+	margin-top: 4px;
 }
 
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+/*!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+/*HACER QUE LAS FOTOS TENGAN EL TAMAÑO EN PORCENTAJES, NO SE AJUSTAN BIEN*/
 
 .Imagen_integrante{
 	width: 200px;
@@ -150,9 +193,10 @@ footer p{
 	background-image:;
 }
 
-p{
-	width: 600px;
-	margin: 10px;
+.descripcion{
+	width: 90%;
+	margin: 30px 10px;
+
 }
 
 
