@@ -8,5 +8,3 @@ def createConn():
         database="project"
     )
     return mydb
-
- #debiansql.westeurope.cloudapp.azure.com
