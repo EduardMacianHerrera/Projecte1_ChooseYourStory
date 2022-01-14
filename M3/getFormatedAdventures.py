@@ -1,3 +1,7 @@
+from get_adventures_with_char import get_adventures_with_chars
+
+dic_adventures = get_adventures_with_chars()
+
 dic_adventures ={
 1:{"Name":"Aventura 1", "Description":"Es la aventura 1", "Charachers":["c1", "c2", "c3"]},
 2:{"Name":"Aventura 2", "Description":"Es la aventura 2", "Charachers":["c2", "c3", "c4"]},
@@ -101,6 +105,7 @@ def getFormatedAdventures(adventures, width, t_w_columns):
                 paragraphs = []
                 count = 0
                 for i in tupla_texts:
+                    i = str(i)
                     paragraphs.append(formatText_Mod1(i, tupla_sizes[count]))
                     count += 1
                 to_print = ""
@@ -124,8 +129,8 @@ def getFormatedAdventures(adventures, width, t_w_columns):
                 else:
                     return "La funcion getFormatedBodyColumns no se ha ejecutado correctamente"
         # A partir de aqui deja de declarar otras funciones y empieza el codigo de la funcion
-        if len(t_w_columns) != 3:
-            raise ValueError
+        # if len(t_w_columns) != 3:
+        #     raise ValueError
         for i in t_w_columns:
             if i < 12:
                 Error_long =True
@@ -147,4 +152,4 @@ def getFormatedAdventures(adventures, width, t_w_columns):
         else:
             return "Error en la ejecución de la función getFormatedAdventures"
 
-print(getFormatedAdventures(dic_adventures, 100, (15, 15, 15)))
+print(getFormatedAdventures(dic_adventures, 120, (15, 30, 30)))

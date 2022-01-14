@@ -8,3 +8,12 @@ def createConn():
         database="project"
     )
     return mydb
+
+# conection =createConn()
+# cursor =conection.cursor()
+# cursor.execute("SELECT * FROM ADVENTURE")
+# resultados =cursor.fetchall()
+# for i in resultados:
+#     print(i)
+# print(resultados)
+# print(createConn())

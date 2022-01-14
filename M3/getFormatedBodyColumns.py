@@ -81,6 +81,7 @@ def getFormatedBodyColumns(tupla_texts,tupla_sizes,margin ="  "):
         paragraphs = []
         count =0
         for i in tupla_texts:
+            i =str(i)
             paragraphs.append(formatText_Mod1(i, tupla_sizes[count]))
             count +=1
         to_print =""
@@ -105,7 +106,7 @@ def getFormatedBodyColumns(tupla_texts,tupla_sizes,margin ="  "):
         else:
             return ("La funcion getFormatedBodyColumns no se ha ejecutado correctamente")
 
-tupla_t = (t1, t2, t3, t4, t5, t6)
+tupla_t = (4, t2, t3, t4, t5, t6)
 sizes = (20, 30, 40, 20, 20, 20)
 getFormatedBodyColumns(tupla_t,sizes)
 
