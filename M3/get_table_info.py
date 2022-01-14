@@ -16,6 +16,3 @@ def get_table(query):
     resultado.insert(0,tupla0)
     resultado = tuple(resultado)
     return resultado
-
-
-print(get_table("Select * from USER"))
