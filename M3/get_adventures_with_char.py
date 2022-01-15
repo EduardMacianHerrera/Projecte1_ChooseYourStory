@@ -1,5 +1,5 @@
 
-from Pruebas.createCon import createConn
+from createCon import createConn
 
 def get_adventures_with_chars():
     conexion = createConn()
@@ -21,3 +21,6 @@ def get_adventures_with_chars():
         adventures.update(diccTemp)
 
     return adventures
+
+
+print(get_adventures_with_chars())
