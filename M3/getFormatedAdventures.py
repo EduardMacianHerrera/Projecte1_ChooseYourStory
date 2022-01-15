@@ -2,6 +2,7 @@ from get_adventures_with_char import get_adventures_with_chars
 
 dic_adventures = get_adventures_with_chars()
 
+# El diccionario de ejemplo basico
 dic_adventures ={
 1:{"Name":"Aventura 1", "Description":"Es la aventura 1", "Charachers":["c1", "c2", "c3"]},
 2:{"Name":"Aventura 2", "Description":"Es la aventura 2", "Charachers":["c2", "c3", "c4"]},
@@ -10,6 +11,7 @@ dic_adventures ={
 5:{"Name":"Aventura 5", "Description":"Es la aventura 5", "Charachers":["c2", "c3", "c4"]}
 }
 
+# Otro diccionario de ejemplo mas enrevesado, con parrafos de distinta longitud para encontrar errores
 dic_adventures_Mod ={
 1009348457654:{"Name":"Aventura 1", "Description":"Es la aventura 1", "Charachers":["c1", "c2", "c3"]},
 2:{"Name":"Aventura numero que se correponde con el segundo valor del sistema de numeración decimal excluyendo el cero", "Description":"Es la aventura 3 amigo, perdon la 2, eso eso, la 2 ", "Charachers":["c2", "c3", "c4"]},
@@ -34,8 +36,30 @@ dic_adventures_Mod ={
 # Como se puede ver, hay 3 parametros de entrada, el diccionario adventures, el widht o ancho total, imagino seran los 100-120
 # de ancho que nos indicaban y la tupla
 
-def getFormatedAdventures(adventures, width, t_w_columns):
+def getFormatedAdventures(adventures, width, t_name_columns, t_w_columns):
     try:
+        def tuple_cutter(tuple_to_cut, tuple_ref):
+            # Esta función sirve para que en caso de que las tuplas tengan longitudes distintas, la que marca
+            # los espacios se recorte para tener la misma longitud que la que tiene los textos de las columnas,
+            # asi en vez de saltar un error, lo corrige
+            while len(tuple_to_cut) > len(tuple_ref):
+                tuple_to_cut = list(tuple_to_cut)[:-1]
+            return tuple(tuple_to_cut)
+        def tuple_extender(tuple_to_ext, tuple_ref):
+            # Función que sirve para añadir valores a la tupla de espacios en caso de que tenga una
+            # cantidad de espacios inferior a la de titulos, va añadiendo al final de la lista los valores que ya tenia la
+            # tupla ej t = (10, 20) la alargamos a 6 sera t =(10, 20, 10, 20, 10, 20
+            values = list(tuple_to_ext)
+            pos = 0
+            while len(tuple_to_ext) < len(tuple_ref):
+                tuple_to_ext = list(tuple_to_ext)
+                tuple_to_ext.append(values[pos])
+                if pos < len(values) - 1:
+                    pos += 1
+                else:
+                    pos = 0
+            tuple_to_ext = tuple(tuple_to_ext)
+            return tuple(tuple_to_ext)
         def getHeader_Mod1(text, width):
             try:
                 if len(text) > width:
@@ -129,27 +153,48 @@ def getFormatedAdventures(adventures, width, t_w_columns):
                 else:
                     return "La funcion getFormatedBodyColumns no se ha ejecutado correctamente"
         # A partir de aqui deja de declarar otras funciones y empieza el codigo de la funcion
-        # if len(t_w_columns) != 3:
-        #     raise ValueError
+        for f in t_w_columns:
+            if type(f) != int:
+                ErrorT_SP =True
+                raise ValueError
+        if len(t_w_columns) > len(t_name_columns):
+            t_w_columns =tuple_cutter(t_w_columns, t_name_columns)
+        elif len(t_w_columns) < len(t_name_columns):
+            t_w_columns =tuple_extender(t_w_columns, t_name_columns)
+        max_w = 0
+        for word in t_name_columns:
+            if len(word) > max_w:
+                max_w = len(word)
         for i in t_w_columns:
-            if i < 12:
+            if i < max_w:
                 Error_long =True
                 raise ValueError
+        # La razón de este error es que si el espacio que damos para los parrafos es demasiado pequeño respecto al
+        # titulo, debajo de un titulo veremos un parrafo muy corto y pegado otro parrafo, aun ocupando el espacio de debajo del titulo
         to_print = getHeader_Mod1("Adventures", width) + "\n" \
                    + (" " *width) + "\n" \
-                   + getHeadeForTableFromTuples_Mod1(("Id Adventure","Adventure","Description"), t_w_columns)+ "\n" \
+                   + getHeadeForTableFromTuples_Mod1(t_name_columns, t_w_columns)+ "\n" \
                    + ("*" *width) + "\n" \
                    + (" " * width) + "\n"
         for j in adventures:
+            # En este caso tupla_t recoge la ID de la aventura, el nombre de la aventura y la descripción de esta
             tupla_t =(str(j), str(adventures[j]["Name"]), str(adventures[j]["Description"]))
-            to_print =to_print + getFormatedBodyColumns(tupla_t, t_w_columns)
+            if len(t_w_columns) > len(tupla_t):
+                t_w_columns = tuple_cutter(t_w_columns, tupla_t)
+            elif len(t_w_columns) > len(tupla_t):
+                t_w_columns =tuple_extender(t_w_columns, tupla_t)
+            to_print =to_print + getFormatedBodyColumns(tupla_t, t_w_columns) + (" " *width) +"\n"
         return(to_print)
     except:
-        if len(t_w_columns) != 3:
-            return "La tupla de entrada tiene una longitud distinta de 3 elementos"
-        elif Error_long:
-            return "Los espacios de separación entre parrafos son demasiado cortos"
+        if ErrorT_SP:
+            return "No todos los valores de la tupla son numeros enteros"
+        if Error_long:
+            return "Los espacios de separación entre parrafos son demasiado cortos para encajar los" \
+                   " titulos de las columnas"
         else:
             return "Error en la ejecución de la función getFormatedAdventures"
 
-print(getFormatedAdventures(dic_adventures, 120, (15, 30, 30)))
+
+tuplas_nombres = ("Id Adventure", "Adventure", "Description", "Otra info")
+tuplas_anchos = (30, 15)
+print(getFormatedAdventures(dic_adventures, 120, tuplas_nombres, tuplas_anchos))
