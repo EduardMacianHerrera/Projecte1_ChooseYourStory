@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a0321a4c-1c51-480b-8757-249916c21edf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/getFormatedTable(queryTable,title).py" beforeDir="false" afterPath="$PROJECT_DIR$/getFormatedTable(queryTable,title).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_table(query).py" beforeDir="false" afterPath="$PROJECT_DIR$/get_table_info.py" afterDir="false" />
+    <list default="true" id="83ccc2a9-b678-4246-b902-67f753afd434" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/checkPassword.py" beforeDir="false" afterPath="$PROJECT_DIR$/checkPassword.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +13,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="23gSmAJjDIAyxk1gov31dx1PPZJ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -116,5 +116,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
