@@ -1,6 +1,4 @@
-use project;
-
-DELETE * FROM STEP
+﻿use project;
 
 # Insert STEP
 # Historia 3
@@ -8,33 +6,33 @@ DELETE * FROM STEP
 INSERT INTO STEP(description,the_end,start,user_creation,date_creation,ID_ADVENTURE) 
 VALUES
 
-("Necesitas dinero para comprar  RAM , ya que actualmente tu ordenador no puede correr dos maquinas virtuales simulataneamente y lo necesitas para un trabajo.
+("Necesitas dinero para comprar  RAM, ya que actualmente tu ordenador no puede correr dos maquinas virtuales simulataneamente y lo necesitas para un trabajo.
 Decides ir a jugar a Poker a la cantina interdimensional para conseguir dinero rapido.
 Llegas a la cantina y la unica mesa a la que te puedes unir es una que van a empezar Shrek, Tobey Maguire, mister Bean, Hermione Granger y un Loro Pirata entrenado. 
-Decides unirte. Hay dos sillas libres, donde te sientas?", 
+Decides unirte. Hay dos sillas libres, ¿Donde te sientas?", 
 0,1,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
-("Quieres jugar?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+("¿Quieres jugar?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
-("Tu siguiente movimiento?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+("¿Tu siguiente movimiento?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
-("Doblas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+("¿Doblas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
-("Igualas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+("¿Igualas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
-("Continuas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+("¿Continuas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
-("Que harás?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+("¿Que harás?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
-("Que haces?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+("¿Que haces?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
-("Quieres volver a jugar?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+("¿Quieres volver a jugar?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
-("Te unes a el?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+("¿Te unes a el?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
-("Otra partida?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+("¿Otra partida?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
-("Te apuntas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+("¿Te apuntas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
 #FINAL
 ("Abandonas la cantina. FIN", 1,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional"));
@@ -59,10 +57,10 @@ VALUES
 user(),
 now(),
 (select ID_STEP from STEP where description = 
-	"Necesitas dinero para comprar  RAM , ya que actualmente tu ordenador no puede correr dos maquinas virtuales simulataneamente y lo necesitas para un trabajo.
-	Decides ir a jugar a Poker a la cantina interdimensional para conseguir dinero rapido.
-	Llegas a la cantina y la unica mesa a la que te puedes unir es una que van a empezar Shrek, Tobey Maguire, mister Bean, Hermione Granger y un Loro Pirata entrenado. Decides unirte.
-	Hay dos sillas libres, ¿Donde te sientas?"),
+"Necesitas dinero para comprar  RAM, ya que actualmente tu ordenador no puede correr dos maquinas virtuales simulataneamente y lo necesitas para un trabajo.
+Decides ir a jugar a Poker a la cantina interdimensional para conseguir dinero rapido.
+Llegas a la cantina y la unica mesa a la que te puedes unir es una que van a empezar Shrek, Tobey Maguire, mister Bean, Hermione Granger y un Loro Pirata entrenado. 
+Decides unirte. Hay dos sillas libres, ¿Donde te sientas?"),
 (select ID_STEP from STEP where description = 
 	"¿Quieres jugar?")
 ),
@@ -78,6 +76,7 @@ now(),
     "¿Quieres jugar?"),
 (select ID_STEP from STEP where description = 
     "¿Tu siguiente movimiento?"))
+,
 
 (
 "Continuas y 
@@ -90,6 +89,7 @@ now(),
     "¿Tu siguiente movimiento?"),
 (select ID_STEP from STEP where description = 
     "¿Doblas?"))
+,
 
 (
 "¡Si!",
@@ -102,6 +102,7 @@ now(),
     "¿Doblas?"),
 (select ID_STEP from STEP where description = 
     "¿Igualas?"))
+,
 
 (
 "Si",
@@ -117,6 +118,7 @@ now(),
 	que el 5 es mayor que el 4 y que por lo tanto tu has ganado por carta alta. Mr Bean acepta afligido su derrota y estrecha la mano en senyal de caballerosidad.
 	Dado que has logrado una buena cantidad de dinero, decides no jugar mas, pero invitas a una ronda a todos los participantes.")
 )
+,
 
 (
 "No",
@@ -131,6 +133,7 @@ now(),
 	Se reparten las dos cartas por jugador, te tocan el 3 de picas y la J de diamante
 	¿Quieres volver a jugar?")
 )
+,
 
 (
 "Continuas e 
@@ -144,6 +147,7 @@ now(),
 (select ID_STEP from STEP where description = 
     "¿Doblas?")
 )
+,
 
 (
 "No, solo 
@@ -158,6 +162,7 @@ now(),
 (select ID_STEP from STEP where description = 
     "¿Continuas?")
 )
+,
 
 (
 "Si",
@@ -170,6 +175,7 @@ now(),
 (select ID_STEP from STEP where description = 
     "¿Que harás?")
 )
+,
 
 (
 "Dejar de jugar,
@@ -183,6 +189,7 @@ now(),
 (select ID_STEP from STEP where description = 
     "Abandonas la cantina. FIN")
 )
+,
 
 (
 "Te retiras",
@@ -197,6 +204,7 @@ now(),
 	Se reparten las dos cartas por jugador, te tocan el 3 de picas y la J de diamante
 	¿Quieres volver a jugar?")
 )
+,
 
 (
 "No, te retiras",
@@ -211,6 +219,7 @@ now(),
 	Se reparten las dos cartas por jugador, te tocan el 3 de picas y la J de diamante
 	¿Quieres volver a jugar?")
 )
+,
 
 (
 "No",
@@ -225,6 +234,7 @@ now(),
 	Se reparten las dos cartas por jugador, te tocan el 3 de picas y la J de diamante
 	¿Quieres volver a jugar?")
 )
+,
 
 (
 "Apuntarte a un concurso
@@ -244,6 +254,7 @@ now(),
 (select ID_STEP from STEP where description = 
     "¿Que haces?")
 )
+,
 
 (
 "Coger el dinero",
@@ -257,6 +268,7 @@ now(),
 	Antes pasas por el cajero automatico para entrar los billetes en tu cuenta y hacer la compra online. 
 	El cajero no los lee porque estan mojados, al final no podras usar ese dinero para comprar la RAM. FIN")
 )
+,
 
 (
 "Decides no coger nada, 
@@ -270,6 +282,7 @@ now(),
 (select ID_STEP from STEP where description = 
     "Abandonas la cantina. FIN")
 )
+,
 
 (
 "No",
@@ -280,8 +293,9 @@ now(),
 (select ID_STEP from STEP where description = 
     "¿Quieres volver a jugar?"),
 (select ID_STEP from STEP where description = 
-    "Te unes a el?")
+    "¿Te unes a el?")
 )
+,
 
 (
 "No, has venido aqui a por dinero,
@@ -296,10 +310,11 @@ now(),
 user(),
 now(),
 (select ID_STEP from STEP where description = 
-    "Te unes a el?"),
+    "¿Te unes a el?"),
 (select ID_STEP from STEP where description = 
     "¿Que haces?")
 )
+,
 
 (
 "Si, pasas el resto de la noche  
@@ -310,10 +325,11 @@ now(),
 user(),
 now(),
 (select ID_STEP from STEP where description = 
-    "Te unes a el?"),
+    "¿Te unes a el?"),
 (select ID_STEP from STEP where description = 
     "Abandonas la cantina. FIN")
 )
+,
 
 (
 "Si",
@@ -321,10 +337,11 @@ now(),
 user(),
 now(),
 (select ID_STEP from STEP where description = 
-    "pregunta origen"),
+    "¿Quieres volver a jugar?"),
 (select ID_STEP from STEP where description = 
     "¿Otra partida?")
 )
+,
 
 (
 "No",
@@ -336,6 +353,7 @@ now(),
 (select ID_STEP from STEP where description = 
     "¿Te apuntas?")
 )
+,
 
 (
 "Si",
@@ -352,6 +370,7 @@ now(),
 (select ID_STEP from STEP where description = 
     "¿Que haces?")
 )
+,
 
 (
 "No",
@@ -363,6 +382,7 @@ now(),
 (select ID_STEP from STEP where description = 
     "Abandonas la cantina. FIN")
 )
+,
 
 (
 "Si",
@@ -375,6 +395,7 @@ now(),
     "Vuelves a perder, esta vez gana Hermione, que no se ha vuelto a dejar engañar por un pajarraco charlatán. 
 	Te retiras, no has logrado ganar dinero y ya buscaras otra forma. Abandonas la cantina. FIN")
 )
+,
 
 (
 "Jugar otra partida de poker en la mesa",
@@ -387,7 +408,7 @@ now(),
 (select ID_STEP from STEP where description = 
     "¿Quieres volver a jugar?")
 )
-
+,
 
 (
 "Al lado de Mister Bean, 
@@ -403,17 +424,4 @@ now(),
 )
 
 
-(
-"opcion",
-"resultado",
-user(),
-now(),
-(select ID_STEP from STEP where description = 
-    "pregunta origen"),
-(select ID_STEP from STEP where description = 
-    "pregunta resultante")
-)
-
 ;
-
-

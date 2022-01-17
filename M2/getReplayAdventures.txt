@@ -1,4 +1,4 @@
-SELECT GAME.ID_USER, /*Us.username,*/ GAME.ID_ADVENTURE, Ad.adventure_name, GAME.ID_CHARACTER/*, Ch.character_name*/
+﻿SELECT GAME.ID_USER, /*Us.username,*/ GAME.ID_ADVENTURE, Ad.adventure_name, GAME.ID_CHARACTER/*, Ch.character_name*/
 FROM GAME
 JOIN ADVENTURE Ad ON GAME.ID_ADVENTURE = Ad.ID_ADVENTURE;
 /*JOIN "USER" Us ON Us.ID_USER = GAME.ID_USER*/
