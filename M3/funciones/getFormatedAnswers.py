@@ -1,27 +1,47 @@
 from createCon import createConn
-from getHeader import getHeader
-
-dict ={(142, 1): {'Description': 'Escoge el camino del centro, del que parecen provenir ruidos de ramas al romperse y astillarse ...',
-                 'Resolution_Anwer': 'Piensas que para ser digno de la espada de las valkirias, debes de afrontar tus miedos y peligros que acechan',
-                 'NextStep_Adventure': 3}}
 
 
-
-#Get formated answers:
+textoPrueba = "Aprovechas y le robas su ultima judia magica (puede venirte bien en combate)"
 
 def getFormatedAnswers(idAnswers, text, lenLine, leftMargin):
 
-    conexion = createConn()
-    cursor = conexion.cursor()
+    if lenLine >= 7:
 
-    cursor.execute(f"select description from `OPTION` where ID_OPTION = {idAnswers}")
-    respuesta = cursor.fetchall()
+        wordsList = text.split()  #Añadir el texto en lista
+        count = 1
+        for i in range(len(wordsList)):
+            wordsList.insert(count, " ")
+            count += 2
 
-    print(getHeader("Nombre aventura", 100))
-    print(text + "\nOptions:")
-    print("\n" + (" " * leftMargin) + respuesta[0][0])
+        option = " " * leftMargin + str(idAnswers) + ") "
+        lenCount = 0
+
+        for i in option: #Para tener en cuenta el len de la id
+            lenCount += 1
+
+        for i in range(len(wordsList)):
+            for j in wordsList[i]:
+
+                if j != " ":
+                    lenCount += 1
+                    if lenCount > lenLine:
+                        wordsList.insert(i, "\n")
+                        wordsList.insert(i + 1, " " * leftMargin)
+                        lenCount = 0
+
+        for i in wordsList:
+            for j in i:
+                option += j
+
+        return option
+
+    else:
+        return("Lenline mínimo de 7 letras loko")
+
+print(getFormatedAnswers(142, textoPrueba, 100,5))
 
 
+'''
 keyAnswer, count = 0,0
 for i in dict.keys():
     for j in i:
@@ -30,8 +50,7 @@ for i in dict.keys():
             count += 1
 
 getFormatedAnswers(keyAnswer, dict[(keyAnswer,1)]["Resolution_Anwer"], 2, 1)
+'''
 
-
-#Falta nombre aventura y numeración de respuestas
 
 
