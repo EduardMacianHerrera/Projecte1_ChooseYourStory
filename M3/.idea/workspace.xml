@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="83ccc2a9-b678-4246-b902-67f753afd434" name="Changes" comment="get_table y createCon.">
-      <change beforePath="$PROJECT_DIR$/getReplayAdventures.py" beforeDir="false" afterPath="$PROJECT_DIR$/getReplayAdventures.py" afterDir="false" />
-    </list>
+    <list default="true" id="83ccc2a9-b678-4246-b902-67f753afd434" name="Changes" comment="get_table y createCon." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +34,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Arxius Actuals DAM/PROJECTE/(M3)Funciones" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../../../Arxius Actuals DAM/PROJECTE/(M3)Funciones" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.getReplayAdventures">
     <configuration name="getReplayAdventures" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
