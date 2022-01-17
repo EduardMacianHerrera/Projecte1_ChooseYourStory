@@ -1,5 +1,7 @@
 use project;
 
+
+delete from RECORD;
 delete from `OPTION`;
 delete from STEP;
 delete from STARS;

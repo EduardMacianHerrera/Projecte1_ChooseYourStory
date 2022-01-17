@@ -139,3 +139,28 @@ def insertCurrentChoice(idGame,actual_id_step,id_answer):
     if conn.is_connected():
         conn.close()
     return
+
+
+def get_adventures_with_chars():
+    conexion = createConn()
+    cursor = conexion.cursor()
+
+    cursor.execute("select ADVENTURE.ID_ADVENTURE, adventure_name, description from ADVENTURE")
+    resAdventure = cursor.fetchall()
+    cursor.execute("Select * from STARS")
+    resStars = cursor.fetchall()
+
+    if conexion.is_connected():
+        conexion.close()
+
+    adventures = {}
+
+    for i in resAdventure:
+        lista = []
+        for n in resStars:
+            if n[0] == i[0]:
+                lista.append(n[1])
+        diccTemp = {i[0]: {"Name": i[1], "Description": i[2], "characters": lista}}
+        adventures.update(diccTemp)
+
+    return adventures
