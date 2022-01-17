@@ -1,0 +1,368 @@
+# Albert
+# Póker interdimensional
+
+INSERT INTO STEP(description,the_end,start,user_creation,date_creation,ID_ADVENTURE) 
+VALUES
+
+("Necesitas dinero para comprar  RAM, ya que actualmente tu ordenador no puede correr dos maquinas virtuales simulataneamente y lo necesitas para un trabajo. Decides ir a jugar a Poker a la cantina interdimensional para conseguir dinero rapido. Llegas a la cantina y la unica mesa a la que te puedes unir es una que van a empezar Shrek, Tobey Maguire, mister Bean, Hermione Granger y un Loro Pirata entrenado. Decides unirte. Hay dos sillas libres, ¿Donde te sientas?", 
+0,1,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("¿Quieres jugar?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("¿Tu siguiente movimiento?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("¿Doblas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("¿Igualas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("¿Continuas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("¿Que harás?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("¿Que haces?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("¿Quieres volver a jugar?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("¿Te unes a el?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("¿Otra partida?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("¿Te apuntas?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Se hace la apuesta inicial, cada uno apuesta una ficha. Se reparten las dos cartas por jugador, te tocan el 3 de picas y la J de diamante ¿Quieres volver a jugar?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+
+
+#FINAL
+("Sales de la cantina tras decir que necesitas ir a descansar a casa. Antes pasas por el cajero automatico para entrar los billetes en tu cuenta y hacer la compra online. El cajero no los lee porque estan mojados, al final no podras usar ese dinero para comprar la RAM. FIN", 1,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Vuelves a perder, esta vez gana Hermione, que no se ha vuelto a dejar engañar por un pajarraco charlatán. Te retiras, no has logrado ganar dinero y ya buscaras otra forma. Abandonas la cantina. FIN", 1,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+
+("Abandonas la cantina. FIN", 1,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional"));
+
+
+
+
+
+
+#OPCIONES
+
+# Albert
+# Póker interdimensional
+
+INSERT INTO `OPTION`
+(description,
+answer,
+user_creation,
+date_creation,
+ID_STEP_FROM,
+ID_STEP_TO)
+ 
+VALUES
+
+(
+"Al lado de Tobey Maguire, el Spiderman de tu infancia",
+"Se hace la apuesta incial, cada uno apuesta una ficha. Se reparten las dos cartas por jugador, te tocan el 2 de corazones y el 5 de picas.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+"Necesitas dinero para comprar  RAM, ya que actualmente tu ordenador no puede correr dos maquinas virtuales simulataneamente y lo necesitas para un trabajo. Decides ir a jugar a Poker a la cantina interdimensional para conseguir dinero rapido. Llegas a la cantina y la unica mesa a la que te puedes unir es una que van a empezar Shrek, Tobey Maguire, mister Bean, Hermione Granger y un Loro Pirata entrenado. Decides unirte. Hay dos sillas libres, ¿Donde te sientas?"),
+(select ID_STEP from STEP where description = 
+	"¿Quieres jugar?")
+),
+
+(
+"Si",
+"Tobey Maguire se retira. Se colocan las 3 cartas visibles sobre la mesa. Son el 4 de diamante, el 5 de corazones y la k de diamante.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Quieres jugar?"),
+(select ID_STEP from STEP where description = 
+    "¿Tu siguiente movimiento?"))
+,
+
+(
+"Continuas y duplicas la apuesta",
+"Hermione se retira. El resto igualan tu apuesta y continua el juego. Se revela otra carta, el as de diamante",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Tu siguiente movimiento?"),
+(select ID_STEP from STEP where description = 
+    "¿Doblas?"))
+,
+
+(
+"¡Si!",
+"Ultima carta! Es el 2 de diamante. Mr Bean sube mucho la apuesta. Shrek se retira. El loro iguala la apuesta dispuesto a todo.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Doblas?"),
+(select ID_STEP from STEP where description = 
+    "¿Igualas?"))
+,
+
+(
+"Si",
+"",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Igualas?"),
+(select ID_STEP from STEP where description = 
+    "Abandonas la cantina. FIN")
+)
+,
+
+(
+"No",
+"Te retiras y esperas a la siguiente partida. Mr Bean gana la partida con doble pareja de 4 y de 2.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Quieres jugar?"),
+(select ID_STEP from STEP where description = 
+    "Se hace la apuesta inicial, cada uno apuesta una ficha. Se reparten las dos cartas por jugador, te tocan el 3 de picas y la J de diamante ¿Quieres volver a jugar?")
+)
+,
+
+(
+"Continuas e igualas la apuesta",
+"Hermione se retira. Se revela otra carta, el as de diamante",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Tu siguiente movimiento?"),
+(select ID_STEP from STEP where description = 
+    "¿Doblas?")
+)
+,
+
+(
+"No, solo igualas la apuesta",
+"Ultima carta! Es el 2 de diamante. Nadie sube la apuesta",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Doblas?"),
+(select ID_STEP from STEP where description = 
+    "¿Continuas?")
+)
+,
+
+(
+"Si",
+"Mr Bean revela sus cartas, el 2 de diamantes y el 4 de treboles, tiene doble pareja, al igual que tu. El loro revela sus cartas, pareja de K. Has ganado, pero aun no tienes suficiente dinero.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Continuas?"),
+(select ID_STEP from STEP where description = 
+    "¿Que harás?")
+)
+,
+
+(
+"Dejar de jugar, ya buscarás alguna forma de hacer la práctica de las MVs",
+"resultado",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Que harás?"),
+(select ID_STEP from STEP where description = 
+    "Abandonas la cantina. FIN")
+)
+,
+
+(
+"Te retiras",
+"Te retiras y esperas a la siguiente partida. Mr Bean gana la partida con doble pareja de 4 y de 2.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Tu siguiente movimiento?"),
+(select ID_STEP from STEP where description = 
+    "Se hace la apuesta inicial, cada uno apuesta una ficha. Se reparten las dos cartas por jugador, te tocan el 3 de picas y la J de diamante ¿Quieres volver a jugar?")
+)
+,
+
+(
+"No, te retiras",
+"Te retiras y esperas a la siguiente partida. Mr Bean gana la partida con doble pareja de 4 y de 2.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Igualas?"),
+(select ID_STEP from STEP where description = 
+    "Se hace la apuesta inicial, cada uno apuesta una ficha. Se reparten las dos cartas por jugador, te tocan el 3 de picas y la J de diamante ¿Quieres volver a jugar?")
+)
+,
+
+(
+"No",
+"Te retiras y esperas a la siguiente partida. Mr Bean gana la partida con doble pareja de 4 y de 2.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Continuas?"),
+(select ID_STEP from STEP where description = 
+    "Se hace la apuesta inicial, cada uno apuesta una ficha. Se reparten las dos cartas por jugador, te tocan el 3 de picas y la J de diamante ¿Quieres volver a jugar?")
+)
+,
+
+(
+"Apuntarte a un concurso que consiste en ver quien aguanta mas bebiendo cerveza con premio en dinero",
+"El concurso trata de beber Cruzcampo. Terminas bastante afectado y te duermes sentado en la taza del vater (Has tenido que ir varias veces y es obvio no ganarás). Te despiertas  con una fuerte voz que resuena por toda la cantina y tu craneo. Es Shrek, quien ha ganado el concurso y, ligeramente ebrio, lo celebra cantando All Star (Somebody once told me...) Te levantas algo aturdido, te apoyas un momento en la pared de la izquierda y ves en el suelo una cartera que alguien se ha dejado, esta sucia y mojada, pero ves que dentro hay un par de billetes.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Que harás?"),
+(select ID_STEP from STEP where description = 
+    "¿Que haces?")
+)
+,
+
+(
+"Coger el dinero",
+"",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Que haces?"),
+(select ID_STEP from STEP where description = 
+    "Sales de la cantina tras decir que necesitas ir a descansar a casa. Antes pasas por el cajero automatico para entrar los billetes en tu cuenta y hacer la compra online. El cajero no los lee porque estan mojados, al final no podras usar ese dinero para comprar la RAM. FIN")
+)
+,
+
+(
+"Decides no coger nada, y entregar la cartera al dueño de la cantina",
+"resultado",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Que haces?"),
+(select ID_STEP from STEP where description = 
+    "Abandonas la cantina. FIN")
+)
+,
+
+(
+"No",
+"Te retiras y ves el resto de la partida. Tobey Maguire gana la partida con una pareja de Q. Lo celebra con sus bailes caracteristicos, que nos traen gratos recuerdos de Spiderman III",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Quieres volver a jugar?"),
+(select ID_STEP from STEP where description = 
+    "¿Te unes a el?")
+)
+,
+
+(
+"No, has venido aqui a por dinero, asi que te apuntas al concurso de beber cerveza para aspirar el premio",
+"El concurso trata de beber Cruzcampo. Terminas bastante afectado y te duermes sentado en la taza del vater (Has tenido que ir varias veces y es obvio no ganarás). Te despiertas  con una fuerte voz que resuena por toda la cantina y tu craneo. Es Shrek, quien ha ganado el concurso y, ligeramente ebrio, lo celebra cantando All Star (Somebody once told me...) Te levantas algo aturdido, te apoyas un momento en la pared de la izquierda y ves en el suelo una cartera que alguien se ha dejado, esta sucia y mojada, pero ves que dentro hay un par de billetes.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Te unes a el?"),
+(select ID_STEP from STEP where description = 
+    "¿Que haces?")
+)
+,
+
+(
+"Si, pasas el resto de la noche bailando con Tobey y renunciando a la poca dignidad que te queda. Tampoco consigues ligarte a nadie.",
+"",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Te unes a el?"),
+(select ID_STEP from STEP where description = 
+    "Abandonas la cantina. FIN")
+)
+,
+
+(
+"Si",
+"Pierdes la partida, el Loro gana con una pareja de 10, gracias a su tactica de ir subiendo la apuesta y ahuyentar a los otros jugadores.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Quieres volver a jugar?"),
+(select ID_STEP from STEP where description = 
+    "¿Otra partida?")
+)
+,
+
+(
+"No",
+"Ves que hay un concurso de beber cerveza con un premio en dinero interesante.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Otra partida?"),
+(select ID_STEP from STEP where description = 
+    "¿Te apuntas?")
+)
+,
+
+(
+"Si",
+"El concurso trata de beber Cruzcampo. Terminas bastante afectado y te duermes sentado en la taza del vater (Has tenido que ir varias veces y es obvio no ganarás). Te despiertas  con una fuerte voz que resuena por toda la cantina y tu craneo. Es Shrek, quien ha ganado el concurso y, ligeramente ebrio, lo celebra cantando All Star (Somebody once told me...) Te levantas algo aturdido, te apoyas un momento en la pared de la izquierda y ves en el suelo una cartera que alguien se ha dejado, esta sucia y mojada, pero ves que dentro hay un par de billetes.",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Te apuntas?"),
+(select ID_STEP from STEP where description = 
+    "¿Que haces?")
+)
+,
+
+(
+"No",
+"resultado",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Te apuntas?"),
+(select ID_STEP from STEP where description = 
+    "Abandonas la cantina. FIN")
+)
+,
+
+(
+"Si",
+"",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Otra partida?"),
+(select ID_STEP from STEP where description = 
+    "Vuelves a perder, esta vez gana Hermione, que no se ha vuelto a dejar engañar por un pajarraco charlatán. Te retiras, no has logrado ganar dinero y ya buscaras otra forma. Abandonas la cantina. FIN")
+)
+,
+
+(
+"Jugar otra partida de poker en la mesa",
+"Se hace la apuesta inicial, cada uno apuesta una ficha. Se reparten las dos cartas por jugador, te tocan el 3 de picas y la J de diamante",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "¿Que harás?"),
+(select ID_STEP from STEP where description = 
+    "¿Quieres volver a jugar?")
+)
+,
+
+(
+"Al lado de Mister Bean, crees que te dara suerte",
+"Se hace la apuesta inicial, cada uno apuesta una ficha. Se reparten las dos cartas por jugador, te tocan el 3 de picas y la J de diamante",
+user(),
+now(),
+(select ID_STEP from STEP where description = 
+    "Necesitas dinero para comprar  RAM, ya que actualmente tu ordenador no puede correr dos maquinas virtuales simulataneamente y lo necesitas para un trabajo. Decides ir a jugar a Poker a la cantina interdimensional para conseguir dinero rapido. Llegas a la cantina y la unica mesa a la que te puedes unir es una que van a empezar Shrek, Tobey Maguire, mister Bean, Hermione Granger y un Loro Pirata entrenado. Decides unirte. Hay dos sillas libres, ¿Donde te sientas?"),
+(select ID_STEP from STEP where description = 
+    "¿Quieres volver a jugar?")
+);
