@@ -7,6 +7,9 @@ def get_table(query):
     resultado = mycursor.fetchall()
     descripcion = mycursor.description
 
+    if proyecto.is_connected():
+        proyecto.close()
+
     lista = []
 
     for i in descripcion:
