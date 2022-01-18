@@ -4,8 +4,12 @@
 INSERT INTO STEP(description,the_end,start,user_creation,date_creation,ID_ADVENTURE) 
 VALUES
 
+DELETE
+FROM STEP
+WHERE ID_ADVENTURE = 9
+
 ("Necesitas dinero para comprar  RAM, ya que actualmente tu ordenador no puede correr dos maquinas virtuales simulataneamente y lo necesitas para un trabajo. Decides ir a jugar a Poker a la cantina interdimensional para conseguir dinero rapido. Llegas a la cantina y la unica mesa a la que te puedes unir es una que van a empezar Shrek, Tobey Maguire, mister Bean, Hermione Granger y un Loro Pirata entrenado. Decides unirte. Hay dos sillas libres, ¿Donde te sientas?", 
-0,1,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
+0,1,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")), 
 
 ("¿Quieres jugar?", 0,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional")),
 
@@ -41,10 +45,6 @@ VALUES
 ("Abandonas la cantina. FIN", 1,0,user(),now(),(select ID_ADVENTURE from ADVENTURE where adventure_name = "Póker interdimensional"));
 
 
-
-
-
-
 #OPCIONES
 
 # Albert
@@ -66,7 +66,7 @@ VALUES
 user(),
 now(),
 (select ID_STEP from STEP where description = 
-"Necesitas dinero para comprar  RAM, ya que actualmente tu ordenador no puede correr dos maquinas virtuales simulataneamente y lo necesitas para un trabajo. Decides ir a jugar a Poker a la cantina interdimensional para conseguir dinero rapido. Llegas a la cantina y la unica mesa a la que te puedes unir es una que van a empezar Shrek, Tobey Maguire, mister Bean, Hermione Granger y un Loro Pirata entrenado. Decides unirte. Hay dos sillas libres, ¿Donde te sientas?"),
+"Necesitas dinero para comprar  RAM, ya que actualmente tu ordenador no puede correr dos maquinas virtuales simulataneamente y lo necesitas para un trabajo. Decides ir a jugar a Poker a la cantina interdimensional para conseguir dinero rapido. Llegas a la cantina y la unica mesa a la que te puedes unir es una que van a empezar Shrek, Tobey Maguire, mister Bean, Hermione Granger y un Loro Pirata entrenado. Decides unirte. Hay dos sillas libres, ¿Donde te sientas?"), #ok
 (select ID_STEP from STEP where description = 
 	"¿Quieres jugar?")
 ),
