@@ -1,7 +1,7 @@
 #Funció que chequea si el format del password és correcte.Un password correcte tindrà una longitud entre 8 i 12 caràcters.
 # Alguna lletra majúscula, alguna lletra minúscula, algun número, algun caràcter especial,sense espais.
 
-def checkPassword():
+def checkPassword(password):
     while True:
 
         try:
@@ -11,12 +11,10 @@ def checkPassword():
             minusculas = 0
             espacioBlanco = 0
 
-            pasword = input("Introduce tu contraseña, esta debe tener, mayusculas,minusculas,numeros, letras y de 8 a 12 caracteres: ")
-
-            if len(pasword) < 8 or len(pasword) > 12:
+            if len(password) < 8 or len(password) > 12:
                 raise ValueError
 
-            for i in pasword:
+            for i in password:
                 if i.isalpha():
                     letras += 1
 
@@ -41,7 +39,7 @@ def checkPassword():
 
         except ValueError:
 
-            if len(pasword) < 8 or len(pasword) > 12:
+            if len(password) < 8 or len(password) > 12:
                 print("La contraseña debe tener de 8 a 12 caracteres.")
                 return False
             elif espacioBlanco >= 1:

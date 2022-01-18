@@ -7,6 +7,9 @@ def get_table(query):
     resultado = mycursor.fetchall()
     descripcion = mycursor.description
 
+    if proyecto.is_connected():
+        proyecto.close()
+
     lista = []
 
     for i in descripcion:
@@ -16,6 +19,3 @@ def get_table(query):
     resultado.insert(0,tupla0)
     resultado = tuple(resultado)
     return resultado
-
-
-print(get_table("Select * from USER"))

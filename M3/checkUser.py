@@ -3,14 +3,12 @@
 # Si alguna de les condicions no es compleix, la mateixa funció ens mostrarà un missatgeinformatiu i retornarà False.
 # En cas que el password compleixi tots els requeriments, ens retornarà True
 
-def checkUser():
+def checkUser(user):
     while True:
         try:
             longitud = 0
             letras = 0
             numeros= 0
-
-            user = input("Introduce el nombre de usuario, este debe tener letras y numeros y una longitud de entre 6 y 10 caracteres: ")
 
             if len(user) >= 6 and len(user) <= 10:
                longitud += 1
