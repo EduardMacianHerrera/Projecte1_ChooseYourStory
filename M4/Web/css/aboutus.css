@@ -12,11 +12,11 @@ body{
 
 header{
 	width: 100%;
+	height: 80px;
 	position: fixed;
 	top:0px;
-	left:au;
 	background-color: #111111;
-	min-width: 1267px;
+	min-width: 1280px;
 	/*Flexbox*/
 	display: flex;
 	flex-direction: row;
@@ -45,14 +45,18 @@ header{
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content:flex-end;
 	align-items: center;
+	justify-content: flex-end;
 }
 
 .headerMenu nav{
 	margin-right: 20px;
+	/*Flexbox*/
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-end;
 }
-
 
 .headerMenu a {
 	display: inline-block;
@@ -68,9 +72,17 @@ header div nav a:hover{
 	border-radius: 5px;
 }
 
-
-.search{
+form{
 	margin-right: 20px;
+}
+
+input[type="search"]{
+
+	border-radius: 20px;
+	height: 30px;
+	width: 200px;
+	padding: 10px;
+	box-sizing: border-box;
 }
 
 /*HEADER*/
@@ -81,7 +93,6 @@ footer{
 	background-color: #111111;
 	width: 100%;
 	height: 70px;
-	position:absolute;
 
 	/*Fexbox*/
 	display: flex;
@@ -101,102 +112,70 @@ footer div a img{
 	margin-right: 20px;
 }
 
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-/*Por alguna razón, el copyright se ve en tamaño 32 y negrita, lo he ajustado manualmente para que sea igual a los otros copyright*/
 footer p{
 	color:white;
 	margin-left: 20px;
 	font-size: 16px;
 	font-weight: normal;
+	font-style: italic;
 }
-
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
 
 /*FOOTER*/
 
-#Contenedor_sobre_nosotros{
-	margin-top: 90px;
-}
 
-#Lista_integrantes{
-	display: flex;
-	flex-direction: row;
-}
+/*MAIN*/
 
-.Integrante{
-	width: 25%;
+.main{
+
+	width: 600px;
+	margin:auto;
+	margin-top: 120px;
+
+	/*Flexbox*/
 	display: flex;
 	flex-direction: column;
-	font-size: 16px;
-	margin: 10px;
-	border: solid #cb1326 2px;
-	border-radius: 10px;
-	color:rgb(199, 199, 199);
+	flex-wrap: wrap;
+
+}
+
+
+.integrante{
+
+	height: 200px;
+	margin: 20px;
+	background-color:#121d29;
+	border-radius: 15px;
+
+	/*flexbox*/
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
 	align-items: center;
 }
 
-#Titulo{
-	height: 50px;
+
+.integrante_img{
+	width: 128px;
+	height: 128px;
 	margin: 10px;
-	padding: 10px;
-	border: solid #cb1326 2px;
-	border-radius: 10px;
-	color:rgb(199, 199, 199);
-	text-align: center;
-	font-size: 30px;
+	background-image: url(../imgs/defaultAvatar.png) ;
+	background-position: center;
+	background-size: 100% 100%;
+	border-radius: 100%;
 }
 
-.Nombre{
-	text-align: center;
-	margin-top: 4px;
-}
-
-
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-/*!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-/*HACER QUE LAS FOTOS TENGAN EL TAMAÑO EN PORCENTAJES, NO SE AJUSTAN BIEN*/
-
-.Imagen_integrante{
-	width: 200px;
-	height: 200px;
-	margin: 10px;
-	background-color: lightblue;
-	border: solid darkblue; 2px;
-}
-
-#Imagen_Albert{
-	background-image:;
-}
-
-#Imagen_Edu{
-	background-image:;
-}
-
-#Imagen_Irene{
-	background-image:;
-}
-
-#Imagen_Sergio{
-	background-image:;
-}
-
-.descripcion{
-	width: 90%;
-	margin: 30px 10px;
+.integrante p {
+	width: 70%;
+	font-style: italic;
+	color:white;
+	margin-right: 10px;
 
 }
+
+/*MAIN*/
+
+
+
 
 

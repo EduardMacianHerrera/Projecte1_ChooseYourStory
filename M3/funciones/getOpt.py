@@ -11,13 +11,18 @@ dictExcepciones = {10:"t", "lol":9}
 def getOpt(textOpts = "", inputOptText="", rangeList=[], dictionary = {}, exceptions = []):
 
     correctOpc, useException = False, False
+    leftMargin = 50
 
     while not correctOpc:
 
         useException = False
 
-        print(" " * 10 + textOpts)
-        opc = input("\n" + inputOptText)
+        opciones = textOpts.split("\n")
+
+        for i in opciones:
+            print(" " * leftMargin + i)
+
+        opc = input("\n" + " " * leftMargin + inputOptText)
 
         for i in rangeList:
             if opc == str(i):
@@ -41,7 +46,7 @@ def getOpt(textOpts = "", inputOptText="", rangeList=[], dictionary = {}, except
                     useException = True
 
         if not correctOpc and not useException:
-            print("===== Invalid option =====")
+            print(" " * leftMargin + "===== Invalid option =====")
 
     return opc
 
