@@ -124,8 +124,15 @@ footer p{
 
 /*FOOTER*/
 
+#Titulo{
+	margin-top: 110px;
+	color: rgb(199, 199, 199);
+	text-align: center;
+}
+
+
 #Contenedor_videos{
-	margin-top: 90px;
+	margin-top: 10px;
 	/*Flexbox*/
 	display: flex;
 	flex-direction: column;
