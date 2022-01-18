@@ -302,7 +302,7 @@ def getTableFromDict(tuple_of_keys, wight_of_columns, dict_of_data):
     try:
         for i in dict_of_data:
             data += str(i)
-            for j in range(len(weigth_of_columns)):
+            for j in range(len(wight_of_columns)):
                 data += " " * wight_of_columns[j] + str(dict_of_data[i][tuple_of_keys[j]])
             data += "\n"
 
