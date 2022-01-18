@@ -129,7 +129,7 @@ footer p{
 
 	width: 600px;
 	margin:auto;
-	margin-top: 120px;
+	margin-top: 20px;
 
 	/*Flexbox*/
 	display: flex;
@@ -171,6 +171,13 @@ footer p{
 	color:white;
 	margin-right: 10px;
 
+}
+
+
+#Titulo{
+	margin-top: 110px;
+	color: rgb(199, 199, 199);
+	text-align: center;
 }
 
 /*MAIN*/
