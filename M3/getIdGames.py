@@ -1,4 +1,4 @@
-from createCon import createConn
+from funciones.funciones import *
 
 def getIdGame():
     proyecto = createConn()
