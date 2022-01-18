@@ -278,6 +278,83 @@ def getFormatedAnswers(idAnswers, text, lenLine, leftMargin):
         return("Lenline mínimo de 7 letras loko")
 
 
+def get_characters():
+
+    dictChatacters = {}
+
+    conexion = createConn()
+    cursor = conexion.cursor()
+    cursor.execute("select * from `CHARACTERS`")
+
+    for i in cursor.fetchall():
+        dictChatacters[i[0]] = i[1]
+
+    if conexion.is_connected():
+        conexion.close()
+
+    return dictChatacters
+
+
+def getTableFromDict(tuple_of_keys, wight_of_columns, dict_of_data):
+
+    data = ""
+
+    try:
+        for i in dict_of_data:
+            data += str(i)
+            for j in range(len(weigth_of_columns)):
+                data += " " * wight_of_columns[j] + str(dict_of_data[i][tuple_of_keys[j]])
+            data += "\n"
+
+    except:
+        print("** Debes introducir el mismo número de keys que de weigth **")
+
+    return data
+
+
+
+def getOpt(textOpts = "", inputOptText="", rangeList=[], dictionary = {}, exceptions = []):
+
+    correctOpc, useException = False, False
+    leftMargin = 50
+
+    while not correctOpc:
+
+        useException = False
+
+        opciones = textOpts.split("\n")
+
+        for i in opciones:
+            print(" " * leftMargin + i)
+
+        opc = input("\n" + " " * leftMargin + inputOptText)
+
+        for i in rangeList:
+            if opc == str(i):
+                correctOpc = True
+                break
+
+        if len(exceptions) != 0:
+            for i in exceptions:
+                if str(i) == opc:
+                    print("Has pulsado la", i)
+                    useException = True
+                    break
+
+        if len(dictionary) != 0:
+            for j, k in dictionary.items():
+                if str(j) == opc:
+                    print("Has pulsado la", j)
+                    useException = True
+                elif str(k) == opc:
+                    print("Has pulsado la", k)
+                    useException = True
+
+        if not correctOpc and not useException:
+            print(" " * leftMargin + "===== Invalid option =====")
+
+    return opc
+
 
 
 # Irene
