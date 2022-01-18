@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83ccc2a9-b678-4246-b902-67f753afd434" name="Changes" comment="get_table y createCon.">
+    <list default="true" id="83ccc2a9-b678-4246-b902-67f753afd434" name="Changes" comment="Juntar todas las funciones en un solo modulo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Archivos de pycharm/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Archivos de pycharm/.idea/.name" beforeDir="false" />
@@ -644,21 +644,23 @@
       <change beforePath="$PROJECT_DIR$/Archivos de pycharm/lib/python3.9/site-packages/wheel/vendored/packaging/tags.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Archivos de pycharm/lib/python3.9/site-packages/wheel/wheelfile.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Archivos de pycharm/pyvenv.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkPassword.py" beforeDir="false" afterPath="$PROJECT_DIR$/checkPassword.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/createUser.py" beforeDir="false" afterPath="$PROJECT_DIR$/createUser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/formatText.py" beforeDir="false" afterPath="$PROJECT_DIR$/formatText.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkPassword.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkUser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/createUser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formatText.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/funciones/funciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/funciones/funciones.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funciones/get_answers_bystep_adventure.py" beforeDir="false" afterPath="$PROJECT_DIR$/funciones/get_answers_bystep_adventure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funciones/get_id_bystep_adventure.py" beforeDir="false" afterPath="$PROJECT_DIR$/funciones/get_id_bystep_adventure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getChoices.py" beforeDir="false" afterPath="$PROJECT_DIR$/getChoices.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getFormatedAdventures.py" beforeDir="false" afterPath="$PROJECT_DIR$/getFormatedAdventures.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getFormatedBodyColumns.py" beforeDir="false" afterPath="$PROJECT_DIR$/getFormatedBodyColumns.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getHeader.py" beforeDir="false" afterPath="$PROJECT_DIR$/getHeader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getHeaderForTableFromTuples.py" beforeDir="false" afterPath="$PROJECT_DIR$/getHeaderForTableFromTuples.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getReplayAdventures.py" beforeDir="false" afterPath="$PROJECT_DIR$/getReplayAdventures.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_adventures_with_char.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_adventures_with_char.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_first_step_adventure.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_first_step_adventure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_table_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_table_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/funciones/getFormatedAnswers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/funciones/get_answers_bystep_adventure.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/funciones/get_id_bystep_adventure.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getChoices.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getFormatedAdventures.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getFormatedBodyColumns.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getHeader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getHeaderForTableFromTuples.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getReplayAdventures.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_adventures_with_char.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_first_step_adventure.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_table_info.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/prueba.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../M4/Web/otraPruebaxd.txt" beforeDir="false" />
     </list>
@@ -811,6 +813,14 @@
       <option name="presentableId" value="Default" />
       <updated>1642154393782</updated>
     </task>
+    <task id="LOCAL-00001" summary="Juntar todas las funciones en un solo modulo">
+      <created>1642503665489</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1642503665489</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -823,5 +833,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Juntar todas las funciones en un solo modulo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Juntar todas las funciones en un solo modulo" />
   </component>
 </project>
