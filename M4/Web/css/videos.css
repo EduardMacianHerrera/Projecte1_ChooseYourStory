@@ -1,4 +1,8 @@
 /*Fomarto con letra capital en cada parrafo y texto justificado"*/
+*{
+	margin: 0px;
+	padding: 0px;
+}
 
 body{
 	background-color: #1b2d3f;
@@ -19,6 +23,7 @@ header{
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	z-index: 1;
 }
 
 .headerLogo{
@@ -106,13 +111,34 @@ footer p{
 
 /*FOOTER*/
 
-p::first-letter{
+#Contenedor_videos{
+	width: 870px;
+	margin: 60px 10px 10px 10px;
+	
+}
+
+.caja_video{
+	margin: 20px 10px;
+	padding: 20px;
+	border: solid #cb1326 2px;
+	border-radius: 10px;
+	color: rgb(199, 199, 199);
+	align-items: center;
+}
+
+.video{
+	width: 800px;
+	height: 450px;
+}
+
+.descripcion::first-letter{
 	font-size: 3em;
 	margin: 2px;
 }
 
-p{
+.descripcion{
 	width: 800px;
 	text-align: justify;
+
 
 

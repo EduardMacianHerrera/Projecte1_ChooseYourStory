@@ -1,10 +1,9 @@
 text1="Aventura de poker inter dimensional en el bar de Moe Sizlak"
 
-def formatText(text, lenLine, split):
+def formatText(text, lenLine, split ="\n"):
     try:
         phrase =""
         word =""
-        word2 =""
         to_print =""
         count =0
         for i in (text +" "):
@@ -16,18 +15,22 @@ def formatText(text, lenLine, split):
                     phrase =phrase +word
                     word = ""
                 else:
+                    while len(phrase) < lenLine:
+                        phrase =phrase +" "
                     to_print =to_print +split +phrase
                     phrase =word
                     word=""
             count +=1
+        while len(phrase) < lenLine:
+            phrase = phrase + " "
         to_print = to_print +split +phrase
-        to_print =to_print +split +word2
+        print(to_print)
         return to_print
     except:
-        if ValueError:
+        if len(word) > lenLine:
             return("Al menos una de las palabras tiene una longitud superior a la de la linea\n"
                    "y no se puede formatar correctamente el parrafo")
         else:
             return("La funcion formatText no se ha ejecutado correctamente")
 
-print(formatText(text1, 18, "\n"))
+formatText(text1, 18)

@@ -1,3 +1,8 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
 body{
 	background-color: #1b2d3f;
 	font-family: sans-serif;
@@ -104,3 +109,20 @@ footer p{
 }
 
 /*FOOTER*/
+
+#Datos_contacto{
+	width: 90%;
+	margin: 95px 10px;
+	border: solid #cb1326 2px;
+	border-radius: 10px;
+	color: rgb(199, 199, 199);
+}
+
+h3{
+	margin: 40px 20px;
+}
+
+#Titulo{
+	margin: 20px 20px;
+	margin-bottom: 60px;
+}

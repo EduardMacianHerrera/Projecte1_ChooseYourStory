@@ -15,4 +15,4 @@ def getHeader(text, width):
     except:
         print("La funcion getHeader no se ha ejecutado correctamente")
 
-print(getHeader(text1, 80))
+print(getHeader(text1, 120))
