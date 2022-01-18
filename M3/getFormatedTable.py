@@ -1,24 +1,6 @@
-from get_adventures_with_char import get_adventures_with_chars
+import datetime
 
-dic_adventures = get_adventures_with_chars()
-
-# El diccionario de ejemplo basico
-dic_adventures ={
-1:{"Name":"Aventura 1", "Description":"Es la aventura 1", "Charachers":["c1", "c2", "c3"]},
-2:{"Name":"Aventura 2", "Description":"Es la aventura 2", "Charachers":["c2", "c3", "c4"]},
-3:{"Name":"Aventura 3", "Description":"Es la aventura 3", "Charachers":["c1", "c2", "c4"]},
-4:{"Name":"Aventura 4", "Description":"Es la aventura 4", "Charachers":["c2", "c3", "c4"]},
-5:{"Name":"Aventura 5", "Description":"Es la aventura 5", "Charachers":["c2", "c3", "c4"]}
-}
-
-# Otro diccionario de ejemplo mas enrevesado, con parrafos de distinta longitud para encontrar errores
-dic_adventures_Mod ={
-1009348457654:{"Name":"Aventura 1", "Description":"Es la aventura 1", "Charachers":["c1", "c2", "c3"]},
-2:{"Name":"Aventura numero que se correponde con el segundo valor del sistema de numeración decimal excluyendo el cero", "Description":"Es la aventura 3 amigo, perdon la 2, eso eso, la 2 ", "Charachers":["c2", "c3", "c4"]},
-3:{"Name":"Aventura 3", "Description":"Es la aventura que consiste en un viaje por los mundos desconocidos mas alla de la Nube de Magallanes", "Charachers":["c1", "c2", "c4"]},
-4:{"Name":"Aventura 4", "Description":"Es la aventura 4", "Charachers":["c2", "c3", "c4"]},
-5:{"Name":"Aventura 5", "Description":"Si sigues leyendo este rollo considera buscar ayuda profesional", "Charachers":["c2", "c3", "c4"]}
-}
+tupla1 =(('ID AVENTURA - NOMBRE', 'ID PASO - DESCRIPCION', 'ID RESPUESTA -DESCRIPCION', 'NUMERO VECES SELECCIONADA', "errr"))
 
 # Esta función se divide en varias partes mas sencillas ejecutadas con otras funciones usadas anteriormente, pero levemente modificadas
 
@@ -148,11 +130,13 @@ def getFormatedAdventures(adventures, width, t_name_columns, t_w_columns):
                     to_print = to_print + "\n"
                 return (to_print)
             except:
-                if len(tupla_texts) != len(tupla_sizes):
-                    return "La longitud de ambas tuplas no es la misma"
+                if len(tupla_texts) > len(tupla_sizes):
+                    return "La longitud de la tupla de parrafos es superior a la de titulos"
                 else:
                     return "La funcion getFormatedBodyColumns no se ha ejecutado correctamente"
         # A partir de aqui deja de declarar otras funciones y empieza el codigo de la funcion
+        ErrorT_SP =False
+        Error_long =False
         for f in t_w_columns:
             if type(f) != int:
                 ErrorT_SP =True
@@ -177,8 +161,8 @@ def getFormatedAdventures(adventures, width, t_name_columns, t_w_columns):
                    + ("*" *width) + "\n" \
                    + (" " * width) + "\n"
         for j in adventures:
-            # En este caso tupla_t recoge la ID de la aventura, el nombre de la aventura y la descripción de esta
-            tupla_t =(str(j), str(adventures[j]["Name"]), str(adventures[j]["Description"]))
+            # La tupla_t es lo que se tiene que modificar, entra los parrafos
+            tupla_t =adventures
             if len(t_w_columns) > len(tupla_t):
                 t_w_columns = tuple_cutter(t_w_columns, tupla_t)
             elif len(t_w_columns) > len(tupla_t):
@@ -194,7 +178,7 @@ def getFormatedAdventures(adventures, width, t_name_columns, t_w_columns):
         else:
             return "Error en la ejecución de la función getFormatedAdventures"
 
-
-tuplas_nombres = ("Id Adventure", "Adventure", "Description", "Otra info")
-tuplas_anchos = (30, 15)
-print(getFormatedAdventures(dic_adventures, 120, tuplas_nombres, tuplas_anchos))
+tupla1 =(('ID AVENTURA - NOMBRE', 'ID PASO - DESCRIPCION', 'ID RESPUESTA -DESCRIPCION', 'NUMERO VECES SELECCIONADA'))
+tuplas_nombres = ("Id AVENTURA-NOMBRE", "ID PASO-DESCRIPCION", "ID RESPUESTA-DESCRIPCION", "NUMERO VECES SELECCIONADA")
+tuplas_anchos = (30, 30)
+print(getFormatedAdventures(tupla1, 120, tuplas_nombres, tuplas_anchos))
