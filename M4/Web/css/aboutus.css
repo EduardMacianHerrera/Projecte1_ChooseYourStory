@@ -162,6 +162,7 @@ footer p{
 	background-image: url(../imgs/defaultAvatar.png) ;
 	background-position: center;
 	background-size: 100% 100%;
+	border-radius: 100%;
 }
 
 .integrante p {

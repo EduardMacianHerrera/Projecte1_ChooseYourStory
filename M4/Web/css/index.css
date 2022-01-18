@@ -208,7 +208,21 @@ article p a{
 	background-position: center;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
+	margin: 10px;
 }
+
+
+.gitImg{
+
+	grid-area: area2;
+	background-image: url("../imgs/gitLogo.png");
+	background-position: center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	margin: 10px;
+	border-radius: 100%;
+}
+
 
 .articleP1{
 	grid-area: area1;
