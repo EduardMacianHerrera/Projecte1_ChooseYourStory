@@ -50,3 +50,4 @@ def getOpt(textOpts = "", inputOptText="", rangeList=[], dictionary = {}, except
 
     return opc
 
+print(getOpt(textOpts, inputText, rangoLista,dictExcepciones))

@@ -199,7 +199,7 @@ article p a{
 	grid-template-rows: 50% 50%;
 	grid-template-areas: "area1 area2"
 						 "area3 area3";
-	row-gap: 30px;
+	row-gap: 10px;
 }
 
 .articleImg{
@@ -210,7 +210,6 @@ article p a{
 	background-repeat: no-repeat;
 	margin: 10px;
 }
-
 
 .gitImg{
 
