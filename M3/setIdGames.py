@@ -15,6 +15,8 @@ def setIdGame():
         check2 = False
 
         resultado = cursor.fetchall()
+        if resultado == []:
+            resultado = ((0,), (0,))
         idGame = resultado[0][0] + 1
         user = input("Usuario: ")
         cursor.execute(f'select ID_USER from USER where username = "{user}"')

@@ -49,6 +49,14 @@ def insertUser(id,user,password):
             mydb.close()
         return
 
+def lastIdGame():
+    conn = createConn()
+    cursor = conn.cursor()
+
+    cursor.execute("select ID_GAME from GAME order by ID_GAME desc limit 1")
+    resultado = cursor.fetchall()
+
+    return resultado[0][0]
 
 def insertCurrentGame(idGame,idUser,isChar,idAdventure):
     conn = createConn()
@@ -186,6 +194,8 @@ def createUser():
     cursor = conn.cursor()
     cursor.execute("select ID_USER from USER order by ID_USER desc limit 1")
     resultado = cursor.fetchall()
+    if resultado == []:
+        resultado = ((0,),(0,))
     conn.commit()
     if conn.is_connected():
         conn.close()
@@ -216,7 +226,7 @@ def getAnswersByStepAdventure():
 
     return idAnswers_byStep_Adventure_dic
 
-def getIdByStepAdventure():
+def get_id_by_step_adventure():
     #Ens retornarà el diccionariid_by_stepsamb nomésels passos relacionats ambl'aventura que estem jugant
 
     id_by_steps = {}
@@ -284,7 +294,7 @@ def get_characters():
 
     conexion = createConn()
     cursor = conexion.cursor()
-    cursor.execute("select * from `CHARACTERS`")
+    cursor.execute("select * from `CHARACTER`")
 
     for i in cursor.fetchall():
         dictChatacters[i[0]] = i[1]
@@ -327,7 +337,7 @@ def getOpt(textOpts = "", inputOptText="", rangeList=[], dictionary = {}, except
         for i in opciones:
             print(" " * leftMargin + i)
 
-        opc = input("\n" + " " * leftMargin + inputOptText)
+        opc = input("\n" + " " * leftMargin + inputOptText) # No suma el leftMArgin
 
         for i in rangeList:
             if opc == str(i):
@@ -337,21 +347,18 @@ def getOpt(textOpts = "", inputOptText="", rangeList=[], dictionary = {}, except
         if len(exceptions) != 0:
             for i in exceptions:
                 if str(i) == opc:
-                    print("Has pulsado la", i)
-                    useException = True
-                    break
+                    return opc
 
         if len(dictionary) != 0:
             for j, k in dictionary.items():
                 if str(j) == opc:
-                    print("Has pulsado la", j)
-                    useException = True
+                    return opc
                 elif str(k) == opc:
-                    print("Has pulsado la", k)
-                    useException = True
+                    return opc
 
         if not correctOpc and not useException:
             print(" " * leftMargin + "===== Invalid option =====")
+            input(" " * leftMargin + "Press enter to continue")
 
     return opc
 
@@ -540,8 +547,13 @@ def formatText(text, lenLine, split ="\n"):
             return("La funcion formatText no se ha ejecutado correctamente")
 
 
-def getFormatedAdventures(adventures, width, t_name_columns, t_w_columns):
+def getFormatedAdventures(adventures):
     try:
+        ErrorT_SP = False
+        Error_long = False
+        width = 120
+        t_name_columns = ("Id Adventure","Adventure","Description")
+        t_w_columns = (20,20,80)
         def tuple_cutter(tuple_to_cut, tuple_ref):
             # Esta función sirve para que en caso de que las tuplas tengan longitudes distintas, la que marca
             # los espacios se recorte para tener la misma longitud que la que tiene los textos de las columnas,
@@ -789,7 +801,6 @@ def getFormatedBodyColumns(tupla_texts,tupla_sizes,margin ="  "):
             for p in range(len(paragraphs)):
                 to_print =to_print + paragraphs[p][l] +margin
             to_print = to_print +"\n"
-        print(to_print)
         return (to_print)
     except:
         if len(tupla_texts) != len(tupla_sizes):
@@ -798,8 +809,9 @@ def getFormatedBodyColumns(tupla_texts,tupla_sizes,margin ="  "):
             return ("La funcion getFormatedBodyColumns no se ha ejecutado correctamente")
 
 
-def getHeader(text, width):
+def getHeader(text):
     try:
+        width = 120
         if len(text) > width:
             return "\nEl texto es mayor que el ancho y no se puede formatar correctamente"
         a1 = (width//2) -(len(text)//2)
