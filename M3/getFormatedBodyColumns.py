@@ -33,10 +33,35 @@ t6 = "Beowulf, se embarca en la busqueda de la espada llamada la Ira de los ciel
 # entonces colocaremos las segundas lineas de cada parrafo.
 #
 # Estas lineas tienen todas el mismo ancho, junto con los 2 espacios minimo que las separan. Ademas, todos los parrafos tienen la misma cantidad
-# de lineas, aunque a partir de cierto punto esten vacias y solo sean espacios (Es necesario para que se coloque todo a sitio)
+# de lineas, aunque a partir de cierto punto esten vacias y solo sean espacios (Es necesario para que se coloque toodo a sitio)
+#
+# He añadido codigo para que si la tupla de parrafos y la de margenes no tienen la misma longitud, la de margenes
+# adquiera la misma longitud que la de parrafos. Por alguna razon si una tupla tiene un solo elemento, se convierte
+# en el tipo de ese elemento (p. ej si es un solo num pasa a ser string y hace fallar la función)
 
-
-def getFormatedBodyColumns(tupla_texts,tupla_sizes,margin ="  "):
+def getFormatedBodyColumns(tupla_texts, tupla_sizes, margin =0):
+    def tuple_cutter(tuple_to_cut, tuple_ref):
+        # Esta función sirve para que en caso de que las tuplas tengan longitudes distintas, la que marca
+        # los espacios se recorte para tener la misma longitud que la que tiene los textos de las columnas,
+        # asi en vez de saltar un error, lo corrige
+        while len(tuple_to_cut) > len(tuple_ref):
+            tuple_to_cut = list(tuple_to_cut)[:-1]
+        return tuple(tuple_to_cut)
+    def tuple_extender(tuple_to_ext, tuple_ref):
+        # Función que sirve para añadir valores a la tupla de espacios en caso de que tenga una
+        # cantidad de espacios inferior a la de titulos, va añadiendo al final de la lista los valores que ya tenia la
+        # tupla ej t = (10, 20) la alargamos a 6 sera t =(10, 20, 10, 20, 10, 20
+        values = list(tuple_to_ext)
+        pos = 0
+        while len(tuple_to_ext) < len(tuple_ref):
+            tuple_to_ext = list(tuple_to_ext)
+            tuple_to_ext.append(values[pos])
+            if pos < len(values) - 1:
+                pos += 1
+            else:
+                pos = 0
+        tuple_to_ext = tuple(tuple_to_ext)
+        return tuple(tuple_to_ext)
     def formatText_Mod1(text, lenLine):
         try:
             phrase = ""
@@ -76,8 +101,14 @@ def getFormatedBodyColumns(tupla_texts,tupla_sizes,margin ="  "):
                         "ejecutado           ",
                         "correctamente       "]
     try:
-        if len(tupla_texts) != len(tupla_sizes):
-            raise ValueError
+        if type(tupla_sizes) == int:
+            tupla_sizes = (tupla_sizes, tupla_sizes)
+        if type(tupla_texts) == str:
+            tupla_texts =(tupla_texts, "")
+        if len(tupla_texts) > len(tupla_sizes):
+            tupla_sizes= tuple_extender(tupla_sizes, tupla_texts)
+        elif len(tupla_texts) < len(tupla_sizes):
+            tupla_sizes= tuple_cutter(tupla_sizes, tupla_texts)
         paragraphs = []
         count =0
         for i in tupla_texts:
@@ -96,18 +127,14 @@ def getFormatedBodyColumns(tupla_texts,tupla_sizes,margin ="  "):
             count +=1
         for l in range(max_h):
             for p in range(len(paragraphs)):
-                to_print =to_print + paragraphs[p][l] +margin
+                to_print =to_print + paragraphs[p][l] +(margin *" ")
             to_print = to_print +"\n"
-        print(to_print)
         return (to_print)
     except:
-        if len(tupla_texts) != len(tupla_sizes):
-            return ("La longitud de ambas tuplas no es la misma")
-        else:
-            return ("La funcion getFormatedBodyColumns no se ha ejecutado correctamente")
+        return ("La funcion getFormatedBodyColumns no se ha ejecutado correctamente")
 
-tupla_t = (4, t2, t3, t4, t5, t6)
-sizes = (20, 30, 40, 20, 20, 20)
-getFormatedBodyColumns(tupla_t,sizes)
+tupla_t = (t1, t2, t3, t4, t5, t6)
+sizes = (30, 15)
+print(getFormatedBodyColumns(tupla_t, sizes, 2))
 
 # A revisar el problema de anchos cuando hay un error
