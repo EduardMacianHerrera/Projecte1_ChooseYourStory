@@ -4,6 +4,181 @@ import datetime
 
 # Edu
 
+
+
+
+def login():
+    check = False
+    while not check:
+        user = input("Username: ")
+        password = input("Password: ")
+        res = checkUserbdd(user, password)
+        if res == 1:
+            check = True
+        elif res == -1:
+            print("La contraseña no es correcta")
+        else:
+            print("El usuario no existe")
+    print(f"Hello, {user}, lets play!!")
+    return user
+
+def titulo(str):
+    return ("=" * 20 + str + 20 * "=")
+
+def main():
+    flag_menuPrincipal = True
+    flag_main = True
+    flag_aventura = False
+    flag_characters = False
+    flag_steps = False
+    flag_createGame = False
+    flag_replay = False
+    global game_context
+    while flag_main:
+        while flag_menuPrincipal:
+            opc = getOpt("\n1)Login\n2)Create user\n3)Replay Adventures\n4)Reports\n5)Exit","Elige tu opción: ",[1,2,3,4,5],{},["w","e",-1])
+            if opc == "1":
+                flag_menuPrincipal = False
+                flag_aventura = True
+            elif opc == "2":
+                createUser()
+            elif opc == "3":
+                flag_replay = True
+                flag_menuPrincipal = False
+            elif opc == "4":
+                print("Reports")
+            elif opc == "5":
+                return
+
+
+        while flag_aventura:
+            user = login()
+            idsUsuarios = getUserIds()
+            for i in range(len(idsUsuarios[0])):
+                if idsUsuarios[0][i] == user:
+                    idUser = idsUsuarios[1][i]
+            print("What adventure do you want to play?")
+
+            adventures = get_adventures_with_chars()
+            characters = get_characters()
+
+
+            print(getFormatedAdventures(adventures))  # HACER QUE SE MUESTRE DE 3 EN 3
+            idAdventure = int(getOpt("", "\nWhat adventure do you want to play? (0 go back) ", list(adventures.keys()), {}, [0]))
+
+
+            if idAdventure == "0":  # ACABAR
+                flag_aventura = False
+                flag_menuPrincipal = True
+
+            print(getHeader(adventures[idAdventure]["Name"]))
+            fila1 = (list(adventures[idAdventure].keys())[0] + ":",adventures[idAdventure][list(adventures[idAdventure].keys())[0]])
+            fila2 = (list(adventures[idAdventure].keys())[1] + ":",adventures[idAdventure][list(adventures[idAdventure].keys())[1]])
+            print(getFormatedBodyColumns(fila1, (20,100), margin="  ")) # MIRAR LO DEL MARGEN
+            print(getFormatedBodyColumns(fila2, (20, 100), margin=" "))  # MIRAR LO DEL MARGE
+            flag_characters = True
+            flag_aventura = False
+
+        while flag_characters:
+            listaPersonajes = []
+
+            for i in characters:
+                if i in adventures[idAdventure]["characters"]:
+                    listaTemp =  [i,characters[i]]
+                    listaPersonajes.append(listaTemp)
+
+            idPersonajes = []
+            for i in range(len(listaPersonajes)):
+                idPersonajes.append(listaPersonajes[i][0])
+                listaPersonajes[i][0] = str(listaPersonajes[i][0])
+                string = listaPersonajes[i][0] + ") "+ listaPersonajes[i][1] + "\n"
+                listaPersonajes[i] = string
+
+
+            textoPersonajes = "".join(listaPersonajes)
+            print(titulo("Characters"))
+            print(textoPersonajes)
+            idCharacter = int(getOpt("","\nSelect your Character (0 go back): ", idPersonajes,{},[0])) # QUE PUEDA VOLVER HACIA ATRAS
+            if idCharacter == 0:
+                flag_characters = False
+                flag_aventura = True
+
+            print(f'You have selected play with {characters[idCharacter]}\n')
+            input("Enter to continue")
+            flag_characters = False
+            flag_createGame = True
+
+
+        while flag_createGame:
+            idGame = lastIdGame()
+            insertCurrentGame(idGame, idUser, idCharacter, idAdventure)
+            game_context = {"idGame": idGame, "idAdventure": idAdventure, "idUser": idUser, "idChar": idCharacter, "name_adventure": adventures[idAdventure]["Name"]}
+            flag_createGame = False
+            flag_steps = True
+
+        while flag_steps:
+            id_by_steps = get_id_by_step_adventure()
+            idAnswer_ByStep_Adventure = get_answers_bystep_adventure()
+            idFirstStep = get_first_step_adventure()[0][0]
+            elecciones(id_by_steps,idAnswer_ByStep_Adventure,idFirstStep)
+
+            flag_steps = False
+            flag_menuPrincipal = True
+
+        while flag_replay: # HACER QUE PUEDAS ESCOGER PARTIDA
+            game_context = {"idGame": 25, "idAdventure": 4, "idUser": 2, "idChar": 7, "name_adventure": "En busca de la gráfica perdida"}
+            tupla = getChoices()
+
+            replay(tupla)
+            flag_replay = False
+            flag_menuPrincipal = True
+
+
+
+
+
+def elecciones(id_by_steps,idAnswer_ByStep_Adventure,idFirstStep):
+    print(getHeader(game_context["name_adventure"]))
+    print(formatText(id_by_steps[idFirstStep]["Description"],120))
+
+    if id_by_steps[idFirstStep]["Final_Step"] == 1:
+        insertCurrentChoice(game_context["idGame"], idFirstStep, 58) # MIRAR LO DE LAS OPCIONES AL FINAL
+        return
+
+    print("\nOptions: ")
+
+    respuestas = id_by_steps[idFirstStep]["answers_in_step"]
+    opciones = []
+    rango = []
+    for i in respuestas:
+        key = (i, idFirstStep)
+        rango.append(i)
+        desc = idAnswer_ByStep_Adventure[key]["Description"]
+        string = str(i) + ") " + desc
+        opciones.append(string)
+
+    textOpciones = "\n".join(opciones)
+
+    opc = int(getOpt(textOpciones, "\nSelect Option: \n", rango, dictionary={}, exceptions=[]))
+    keyPaso = (opc, idFirstStep)
+    insertCurrentChoice(game_context["idGame"], idFirstStep, opc)
+    print()
+    if not idAnswer_ByStep_Adventure[keyPaso]["Resolution_answer"] == "":
+        print(idAnswer_ByStep_Adventure[keyPaso]["Resolution_answer"])
+        print()
+    input("Enter to continue\n\n")
+    nextStep = idAnswer_ByStep_Adventure[keyPaso]["NextStep_Adventure"]
+    elecciones(id_by_steps,idAnswer_ByStep_Adventure,nextStep)
+
+
+
+
+
+
+
+
+
+
 def createConn():
     mydb = mysql.connector.connect(
         host="debiansql.westeurope.cloudapp.azure.com",
@@ -55,8 +230,10 @@ def lastIdGame():
 
     cursor.execute("select ID_GAME from GAME order by ID_GAME desc limit 1")
     resultado = cursor.fetchall()
+    if resultado == []:
+        resultado = ((0,),(0,))
 
-    return resultado[0][0]
+    return resultado[0][0] + 1
 
 def insertCurrentGame(idGame,idUser,isChar,idAdventure):
     conn = createConn()
@@ -206,16 +383,15 @@ def createUser():
 # Sergio
 
 
-def getAnswersByStepAdventure():
+def get_answers_bystep_adventure():
 
     idAnswers_byStep_Adventure_dic = {}
 
     conexion = createConn()
     cursor = conexion.cursor()
-    cursor.execute(f"select ID_STEP from STEP where ID_ADVENTURE = {idAventura} ")
+    cursor.execute(f'select ID_STEP from STEP where ID_ADVENTURE = {game_context["idAdventure"]}')
     idPasoAventura = cursor.fetchall() #Saca las id de los pasos de la aventura de la variable
 
-    print(idPasoAventura)
 
     optionTable = []
     for i in idPasoAventura:
@@ -224,16 +400,17 @@ def getAnswersByStepAdventure():
         for j in optionTable:
             idAnswers_byStep_Adventure_dic[(j[0], i[0])] = {"Description": j[1], "Resolution_answer":j[2], "NextStep_Adventure":j[8]}
 
+
     return idAnswers_byStep_Adventure_dic
 
 def get_id_by_step_adventure():
     #Ens retornarà el diccionariid_by_stepsamb nomésels passos relacionats ambl'aventura que estem jugant
-
+    global game_context
     id_by_steps = {}
 
     conexion = createConn()
     cursor = conexion.cursor()
-    cursor.execute(f"select * from STEP where ID_ADVENTURE = {idAventura}")
+    cursor.execute(f'select * from STEP where ID_ADVENTURE = {game_context["idAdventure"]}')
     result = cursor.fetchall()
 
     for i in result:
@@ -365,6 +542,26 @@ def getOpt(textOpts = "", inputOptText="", rangeList=[], dictionary = {}, except
 
 
 # Irene
+
+def getChoices():
+    proyecto = createConn()
+    mycursor = proyecto.cursor()
+    mycursor.execute(f'select ID_STEP,ID_OPTION from RECORD where ID_GAME = {game_context["idGame"]}')
+    resultado = mycursor.fetchall()
+
+    lista = []
+
+    for i in resultado:
+        lista.append(i)
+
+    tupla0 = tuple(lista)
+
+    if proyecto.is_connected():
+        proyecto.close()
+
+    return tupla0
+
+
 def checkPassword(password):
     while True:
 
@@ -423,9 +620,10 @@ def checkPassword(password):
                 return False
 
 def get_first_step_adventure():
+    global game_context
     proyecto = createConn()
     mycursor = proyecto.cursor()
-    mycursor.execute(f"select ID_STEP,description from STEP where ID_ADVENTURE = {id_adventure} and START = 1")
+    mycursor.execute(f'select ID_STEP,description from STEP where ID_ADVENTURE = {game_context["idAdventure"]} and START = 1')
     resultado = mycursor.fetchall()
     if proyecto.is_connected():
         proyecto.close()
@@ -512,6 +710,66 @@ def checkUser(user):
 
 # Albert
 
+def replay(choices):
+    try:
+        id_by_steps = get_id_by_step_adventure()
+        idAnswer_ByStep_Adventure = get_answers_bystep_adventure()
+        choices = list(choices)
+        for i in range(len(choices)):
+            choices[i] = list(choices[i])
+            id1 = choices[i][0]
+            keyTemp = (choices[i][1], choices[i][0])
+            choices[i][0] = id_by_steps[choices[i][0]]["Description"]
+            if id_by_steps[id1]["Final_Step"] == 1:
+                print(choices[i])
+                choices[i].pop(1)
+                print(choices[i])
+            else:
+                choices[i][1] = idAnswer_ByStep_Adventure[keyTemp]["Resolution_answer"]
+                choices[i].insert(1, idAnswer_ByStep_Adventure[keyTemp]["Description"])
+        choices = tuple(choices)
+
+        width = 120
+        def formatText_Mod(text, lenLine, split="\n"):
+            try:
+                phrase = ""
+                word = ""
+                to_print = ""
+                count = 0
+                for i in (text + " "):
+                    word = word + i
+                    if len(word) > lenLine*(1 +(text.count("\n"))):
+                        raise ValueError
+                    if i == " ":
+                        if len(phrase + word) < lenLine:
+                            phrase = phrase + word
+                            word = ""
+                        else:
+                            while len(phrase) < lenLine:
+                                phrase = phrase + " "
+                            to_print = to_print + split + phrase
+                            phrase = word
+                            word = ""
+                    count += 1
+                while len(phrase) < lenLine:
+                    phrase = phrase + " "
+                to_print = to_print + split + phrase
+                return to_print
+            except:
+                if len(word) > lenLine:
+                    return ("Al menos una de las palabras tiene una longitud superior a la de la linea\n"
+                            "y no se puede formatar correctamente el parrafo")
+                else:
+                    return ("La funcion formatText no se ha ejecutado correctamente")
+        for i in range(len(choices)):
+            for k in range(len(choices[i])):
+                paso = input("\n        Press Enter to continue:")
+
+                print(formatText_Mod(choices[i][k], width))
+        return
+    except:
+        print("La función replay no se ha ejecutado correctamente")
+
 
 def formatText(text, lenLine, split ="\n"):
     try:
@@ -537,7 +795,6 @@ def formatText(text, lenLine, split ="\n"):
         while len(phrase) < lenLine:
             phrase = phrase + " "
         to_print = to_print +split +phrase
-        print(to_print)
         return to_print
     except:
         if len(word) > lenLine:
@@ -851,3 +1108,6 @@ def getReplayAdventures():
 
     return res2
 
+
+
+main()
