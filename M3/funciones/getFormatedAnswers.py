@@ -1,3 +1,4 @@
+'''
 from createCon import createConn
 
 
@@ -41,7 +42,7 @@ def getFormatedAnswers(idAnswers, text, lenLine, leftMargin):
 print(getFormatedAnswers(142, textoPrueba, 100,5))
 
 
-'''
+
 keyAnswer, count = 0,0
 for i in dict.keys():
     for j in i:
@@ -50,7 +51,7 @@ for i in dict.keys():
             count += 1
 
 getFormatedAnswers(keyAnswer, dict[(keyAnswer,1)]["Resolution_Anwer"], 2, 1)
+
+
 '''
-
-
 

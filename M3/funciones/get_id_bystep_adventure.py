@@ -1,3 +1,4 @@
+'''
 from createCon import createConn
 
 global idAventura
@@ -30,3 +31,4 @@ def getIdByStepAdventure():
 
     return id_by_steps
 
+'''

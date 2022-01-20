@@ -1,3 +1,4 @@
+'''
 import datetime
 
 #getTableFromDict
@@ -26,3 +27,4 @@ def getTableFromDict(tuple_of_keys, wight_of_columns, dict_of_data):
         print("** Debes introducir el mismo número de keys que de weigth **")
 
     return data
+'''

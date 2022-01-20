@@ -1,3 +1,4 @@
+'''
 from createCon import createConn
 
 def get_characters():
@@ -17,3 +18,4 @@ def get_characters():
     return dictChatacters
 
 print(get_characters())
+'''
