@@ -1,4 +1,5 @@
 from createCon import createConn
+from getFormatedReports import getFormatedReports
 
 def games_played_by_user(username):
 
@@ -9,7 +10,7 @@ def games_played_by_user(username):
     result = cursor.fetchall()
 
     if result != []:
-        return result
+        return getFormatedReports(result, 120, ("ID AVENTURE", "NAME", "DATE"), (30))
     else:
         return "**El usuario no tiene partidas**"
 
