@@ -2,6 +2,7 @@ text1="Aventura de poker inter dimensional en el bar de Moe Sizlak"
 
 def formatText(text, lenLine, split ="\n"):
     try:
+        text =text.replace('\n',"")
         phrase =""
         word =""
         to_print =""

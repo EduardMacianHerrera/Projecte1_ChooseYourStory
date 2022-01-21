@@ -8,13 +8,10 @@ def getReplayAdventures():
                    "JOIN USER Us ON Us.ID_USER = GAME.ID_USER "
                    "JOIN CHARACTER Ch ON Ch.ID_CHARACTER = GAME.ID_CHARACTER;")
     resReplay = cursor.fetchall()
-    # Proceso de desconexión, en el fallo de la query de debajo
-    # se comprueba que la connexión no esta hecha
     if conexion.is_connected():
         conexion.disconnect()
-    # cursor.execute("SELECT * FROM ADVENTURE")
-    # res2 =cursor.fetchall()
 
-    return res2
+
+    return resReplay
 
 print(getReplayAdventures())
