@@ -11,5 +11,5 @@ Autores:
 - Eduard Macián Herrera: correo: emacianherrera.cf@iesesteveterradas.cat, telef: +34-688-888-888.
 - Irene Hernández Velarde: correo: ihernandezvelarde.cf@iesesteveterradas.cat, telef: +34-677-777-777, linkedIn: https://es.linkedin.com/in/irene-hern%C3%A1ndez-velarde-3bb07621a
 - Sergio Herrera Marín: correo: sherreramarin.cf@iesesteveterradas.cat, telef: +34- 699-999-999, linkedIn: https://www.linkedin.com/in/sergio-herrera-mar%C3%ADn-9755591b8/
-- Albert Francisco González: correo: afranciscogonzalez.cf@iesesteveterradas.cat,telef: +34-610-101-101,linkedIn:https://www.linkedin.com/in/albert-francisco-gonzalez/
+- Albert Francisco González: correo: afranciscogonzalez.cf@iesesteveterradas.cat, telef: +34-610-101-101,linkedIn:https://www.linkedin.com/in/albert-francisco-gonzalez/
 
