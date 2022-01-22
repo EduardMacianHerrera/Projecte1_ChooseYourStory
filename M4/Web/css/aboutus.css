@@ -87,6 +87,7 @@ input[type="search"]{
 
 /*HEADER*/
 
+
 /*FOOTER*/
 
 footer{
@@ -138,10 +139,9 @@ footer p{
 
 }
 
-
 .integrante{
 
-	height: 200px;
+	 /*Arreglar*/
 	margin: 20px;
 	background-color:#121d29;
 	border-radius: 15px;
@@ -154,23 +154,48 @@ footer p{
 	align-items: center;
 }
 
-
-.integrante_img{
+.integrante1_img{
 	width: 128px;
 	height: 128px;
 	margin: 10px;
-	background-image: url(../imgs/defaultAvatar.png) ;
+	background-image: url(../imgs/AlbertAvatar.jpg) ;
 	background-position: center;
 	background-size: 100% 100%;
 	border-radius: 100%;
 }
 
+.imgIntegrante{
+
+	width: 128px;
+	height: 128px;
+	margin: 10px;
+	background-position: center;
+	background-size: 100% 100%;
+	border-radius: 100%;
+
+}
+
+.integrante1{
+	background-image: url(../imgs/AlbertAvatar.jpg);
+}
+
+.integrante2{
+	background-image: url(../imgs/IreneAvatar.jpg);
+}
+
+.integrante3{
+	background-image: url(../imgs/SergioAvatar.jpg);
+}
+
+.integrante4{
+	background-image: url(../imgs/EduAvatar.jpg);
+}
+
 .integrante p {
 	width: 70%;
-	font-style: italic;
-	color:white;
-	margin-right: 10px;
-
+	font-style:italic;
+	color:rgb(199, 199, 199);
+	margin: 10px;
 }
 
 
