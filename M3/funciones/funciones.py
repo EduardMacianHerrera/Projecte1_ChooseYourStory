@@ -174,8 +174,8 @@ def main():
             characters = get_characters()
 
 
-            print(getFormatedAdventures(adventures))  # HACER QUE SE MUESTRE DE 3 EN 3
-            idAdventure = int(getOpt("", "\nWhat adventure do you want to play? (0 go back) ", list(adventures.keys()), {}, [0]))
+
+            idAdventure = int(getFormatedAdventures(adventures))
 
 
             if idAdventure == 0:
@@ -237,8 +237,13 @@ def main():
             flag_steps = False
             flag_menuPrincipal = True
 
-        while flag_replay: # HACER QUE PUEDAS ESCOGER PARTIDA
-            game_context = {"idGame": 25, "idAdventure": 4, "idUser": 2, "username":user,"idChar": 7, "name_adventure": "En busca de la gráfica perdida"}
+        while flag_replay:
+            games = getGamesInfo()
+            tuplas_nombres = ("Id", "Username", "Name", "Character_name", "Date")
+            tuplas_anchos = (20, 20, 20, 20, 20)
+            width = 120
+            Id_Game, Username, Nombre_Aventura, Id_Adventure = getFormatedGames(games, width, tuplas_nombres, tuplas_anchos)
+            game_context = {"idGame": Id_Game, "idAdventure": Id_Adventure, "idUser": 2, "username":"user","idChar": 7, "name_adventure": "En busca de la gráfica perdida"}
             tupla = getChoices()
             replay(tupla)
             flag_replay = False
@@ -314,7 +319,7 @@ def elecciones(id_by_steps,idAnswer_ByStep_Adventure,idFirstStep):
     print(formatText(id_by_steps[idFirstStep]["Description"],120))
 
     if id_by_steps[idFirstStep]["Final_Step"] == 1:
-        insertCurrentChoice(game_context["idGame"], idFirstStep, 58)
+        insertCurrentChoice(game_context["idGame"], idFirstStep, 10)
         normal(fin)
         input("\nEnter to continue: \n")
         return
@@ -1088,6 +1093,22 @@ def checkUser(user):
 
 # Albert
 
+def getGamesInfo():
+    conn = createConn()
+    cursor = conn.cursor()
+    cursor.execute("select GAME.ID_GAME,username, adventure_name, character_name, `date`, ADVENTURE.ID_ADVENTURE from GAME inner join `USER` on `USER`.ID_USER = GAME.ID_USER inner join ADVENTURE on ADVENTURE.ID_ADVENTURE = GAME.ID_ADVENTURE inner join `CHARACTER` on `CHARACTER`.ID_CHARACTER = GAME.ID_CHARACTER")
+    resultado = cursor.fetchall()
+
+    games = {}
+    if conn.is_connected():
+        conn.close()
+
+    for i in resultado:
+        diccTemporal = {i[0]: {"Username": i[1], "Name": i[2], "Characher_Name": i[3], "Date": i[4], "Id_Adventure":i[5]}}
+        games.update(diccTemporal)
+
+    return games
+
 def letra_Grande(texto):
     def formatText_Mod2(text, lenLine, split="\n"):
         try:
@@ -1131,69 +1152,6 @@ def letra_Grande(texto):
     return formatado
 
 
-
-'''def replay(choices):
-    try:
-        id_by_steps = get_id_by_step_adventure()
-        idAnswer_ByStep_Adventure = get_answers_bystep_adventure()
-        choices = list(choices)
-        for i in range(len(choices)):
-            choices[i] = list(choices[i])
-            id1 = choices[i][0]
-            keyTemp = (choices[i][1], choices[i][0])
-            choices[i][0] = id_by_steps[choices[i][0]]["Description"]
-
-            if id_by_steps[id1]["Final_Step"] == 1:
-                choices[i][1] = ""
-            else:
-                choices[i][1] = idAnswer_ByStep_Adventure[keyTemp]["Resolution_answer"]
-                choices[i].insert(1, idAnswer_ByStep_Adventure[keyTemp]["Description"])
-
-        choices = tuple(choices)
-
-        width = 120
-        def formatText_Mod(text, lenLine, split="\n"):
-            try:
-                phrase = ""
-                word = ""
-                to_print = ""
-                count = 0
-                for i in (text + " "):
-                    word = word + i
-                    if len(word) > lenLine*(1 +(text.count("\n"))):
-                        raise ValueError
-                    if i == " ":
-                        if len(phrase + word) < lenLine:
-                            phrase = phrase + word
-                            word = ""
-                        else:
-                            while len(phrase) < lenLine:
-                                phrase = phrase + " "
-                            to_print = to_print + split + phrase
-                            phrase = word
-                            word = ""
-                    count += 1
-                while len(phrase) < lenLine:
-                    phrase = phrase + " "
-                to_print = to_print + split + phrase
-                return to_print
-            except:
-                if len(word) > lenLine:
-                    return ("Al menos una de las palabras tiene una longitud superior a la de la linea\n"
-                            "y no se puede formatar correctamente el parrafo")
-                else:
-                    return ("La funcion formatText no se ha ejecutado correctamente")
-        for i in range(len(choices)):
-            for k in range(len(choices[i])):
-                if not choices[i][k] == "":
-                    paso = input("\n        Press Enter to continue:")
-                    print(formatText_Mod(choices[i][k], width))
-        paso = input("\n        Press Enter to continue:")
-        return
-    except:
-        print("La función replay no se ha ejecutado correctamente")
-'''
-
 def formatText(text, lenLine, split ="\n"):
     try:
         phrase =""
@@ -1229,11 +1187,6 @@ def formatText(text, lenLine, split ="\n"):
 
 def getFormatedAdventures(adventures):
     try:
-        ErrorT_SP = False
-        Error_long = False
-        width = 120
-        t_name_columns = ("Id Adventure","Adventure","Description")
-        t_w_columns = (20,20,80)
         def tuple_cutter(tuple_to_cut, tuple_ref):
             # Esta función sirve para que en caso de que las tuplas tengan longitudes distintas, la que marca
             # los espacios se recorte para tener la misma longitud que la que tiene los textos de las columnas,
@@ -1349,6 +1302,202 @@ def getFormatedAdventures(adventures):
                 else:
                     return "La funcion getFormatedBodyColumns no se ha ejecutado correctamente"
         # A partir de aqui deja de declarar otras funciones y empieza el codigo de la funcion
+        width = 120
+        t_name_columns = ("Id Adventure", "Adventure", "Description")
+        t_w_columns = (30, 30, 30 ,30)
+        ErrorT_SP = False
+        Error_long = False
+        for f in t_w_columns:
+            if type(f) != int:
+                ErrorT_SP =True
+                raise ValueError
+        if len(t_w_columns) > len(t_name_columns):
+            t_w_columns =tuple_cutter(t_w_columns, t_name_columns)
+        elif len(t_w_columns) < len(t_name_columns):
+            t_w_columns =tuple_extender(t_w_columns, t_name_columns)
+        max_w = 0
+        for word in t_name_columns:
+            if len(word) > max_w:
+                max_w = len(word)
+        for i in t_w_columns:
+            if i < max_w:
+                Error_long =True
+                raise ValueError
+        to_print = getHeader_Mod1("Adventures", width) + "\n" \
+                   + (" " *width) + "\n" \
+                   + getHeadeForTableFromTuples_Mod1(t_name_columns, t_w_columns)+ "\n" \
+                   + ("*" *width) + "\n" \
+                   + (" " * width) + "\n"
+        count_List =1       #
+        Printar_lista = True             #
+        Tuples_length_correct = False    #
+        Scrollear = True
+        while Scrollear:
+            # En este caso tupla_t recoge la ID de la aventura, el nombre de la aventura y la descripción de esta
+            tupla_t =(str(count_List), str(adventures[count_List]["Name"]), str(adventures[count_List]["Description"]))
+            if Tuples_length_correct == False:
+                if len(t_w_columns) > len(tupla_t):
+                    t_w_columns = tuple_cutter(t_w_columns, tupla_t)
+                elif len(t_w_columns) > len(tupla_t):
+                    t_w_columns =tuple_extender(t_w_columns, tupla_t)
+                Tuples_length_correct = True
+            to_print =to_print + getFormatedBodyColumns(tupla_t, t_w_columns) + (" " *width) +"\n"
+            if count_List == 3 or count_List > 5:
+                if (count_List)%3 ==0 or count_List == len(adventures):
+                    print(to_print)
+                    scroll = input("Scroll down: + / Scroll up: - / OUT: 0) ")
+                    while scroll != "+" and scroll != "-" and scroll != "0" and scroll.isdigit() == False:
+                        scroll = input("Scroll down: + / Scroll up: - / OUT: 0) ")
+                    if scroll.isdigit():
+                        if int(scroll) > 0 and int(scroll) <= len(adventures):
+                            Num_elegido = scroll
+                            Printar_lista = False
+                            Scrollear = False
+                    print("")
+                    to_print = ""
+                    if scroll == "0":
+                        break
+                    if scroll == "-" and count_List > 2:
+                        if count_List == 3:
+                            count_List =0
+                        else:
+                            if count_List == len(adventures):
+                                count_List = count_List -4
+                            else:
+                                count_List =count_List -6
+            if count_List < (len(adventures)):
+                count_List += 1
+        if Printar_lista == True:
+            print(to_print)
+        return Num_elegido
+    except:
+        if ErrorT_SP:
+            return "No todos los valores de la tupla son numeros enteros"
+        if Error_long:
+            return "Los espacios de separación entre parrafos son demasiado cortos para encajar los" \
+                   " titulos de las columnas"
+        else:
+            return "Error en la ejecución de la función getFormatedAdventures"
+
+def getFormatedGames(adventures, width, t_name_columns, t_w_columns):
+    try:
+        def tuple_cutter(tuple_to_cut, tuple_ref):
+            # Esta función sirve para que en caso de que las tuplas tengan longitudes distintas, la que marca
+            # los espacios se recorte para tener la misma longitud que la que tiene los textos de las columnas,
+            # asi en vez de saltar un error, lo corrige
+            while len(tuple_to_cut) > len(tuple_ref):
+                tuple_to_cut = list(tuple_to_cut)[:-1]
+            return tuple(tuple_to_cut)
+        def tuple_extender(tuple_to_ext, tuple_ref):
+            # Función que sirve para añadir valores a la tupla de espacios en caso de que tenga una
+            # cantidad de espacios inferior a la de titulos, va añadiendo al final de la lista los valores que ya tenia la
+            # tupla ej t = (10, 20) la alargamos a 6 sera t =(10, 20, 10, 20, 10, 20
+            values = list(tuple_to_ext)
+            pos = 0
+            while len(tuple_to_ext) < len(tuple_ref):
+                tuple_to_ext = list(tuple_to_ext)
+                tuple_to_ext.append(values[pos])
+                if pos < len(values) - 1:
+                    pos += 1
+                else:
+                    pos = 0
+            tuple_to_ext = tuple(tuple_to_ext)
+            return tuple(tuple_to_ext)
+        def getHeader_Mod1(text, width):
+            try:
+                if len(text) > width:
+                    return "El texto es mayor que el ancho y no se puede formatar correctamente"
+                a1 = (width // 2) - (len(text) // 2)
+                a2 = (width // 2) - (len(text) // 2)
+                if (a1 + a2 + len(text)) > width:
+                    a1 -= 1
+                elif (a1 + a2 + len(text)) < width:
+                    a2 += 1
+                Header = (("=" * a1) + (text) + ("=" * a2))
+                return Header
+            except:
+                return "La funcion getHeader no se ha ejecutado correctamente"
+        def getHeadeForTableFromTuples_Mod1(t_name_columns, t_size_columns, title=""):
+            try:
+                to_print = ""
+                count = 0
+                for i in t_size_columns:
+                    to_print = to_print + t_name_columns[count] + (" " * (i - len(t_name_columns[count]) +2))
+                    count += 1
+                return to_print
+            except:
+                return "Error en la función getHeadeForTableFromTuples_Mod1"
+        def getFormatedBodyColumns(tupla_texts, tupla_sizes, margin="  "):
+            def formatText_Mod1(text, lenLine):
+                try:
+                    phrase = ""
+                    word = ""
+                    to_print = []
+                    count = 0
+                    for i in (text + " "):
+                        word = word + i
+                        if len(word) > lenLine:
+                            raise ValueError
+                        if i == " ":
+                            if len(phrase + word) < lenLine:
+                                phrase = phrase + word
+                                word = ""
+                            else:
+                                while len(phrase) < lenLine:
+                                    phrase = phrase + " "
+                                to_print.append(phrase)
+                                phrase = word
+                                word = ""
+                        count += 1
+                    while len(phrase) < lenLine:
+                        phrase = phrase + " "
+                    to_print.append(phrase)
+                    return to_print
+                except:
+                    if len(word) > lenLine:
+                        return ["Al menos una de las ",
+                                "palabras tiene una  ",
+                                "longitud superior a ",
+                                "la de la linea y no ",
+                                "se puede formatar el",
+                                "parrafo             "]
+                    else:
+                        return ["La funcion          ",
+                                "formatText no se ha ",
+                                "ejecutado           ",
+                                "correctamente       "]
+            try:
+                if len(tupla_texts) != len(tupla_sizes):
+                    raise ValueError
+                paragraphs = []
+                count = 0
+                for i in tupla_texts:
+                    i = str(i)
+                    paragraphs.append(formatText_Mod1(i, tupla_sizes[count]))
+                    count += 1
+                to_print = ""
+                max_h = 0
+                for j in paragraphs:
+                    if len(j) > max_h:
+                        max_h = len(j)
+                count = 0
+                for k in paragraphs:
+                    while len(k) < max_h:
+                        k.append(" " * tupla_sizes[count])
+                    count += 1
+                for l in range(max_h):
+                    for p in range(len(paragraphs)):
+                        to_print = to_print + paragraphs[p][l] + margin
+                    to_print = to_print + "\n"
+                return (to_print)
+            except:
+                if len(tupla_texts) != len(tupla_sizes):
+                    return "La longitud de ambas tuplas no es la misma"
+                else:
+                    return "La funcion getFormatedBodyColumns no se ha ejecutado correctamente"
+        # A partir de aqui deja de declarar otras funciones y empieza el codigo de la funcion
+        ErrorT_SP = False
+        Error_long = False
         for f in t_w_columns:
             if type(f) != int:
                 ErrorT_SP =True
@@ -1372,15 +1521,51 @@ def getFormatedAdventures(adventures):
                    + getHeadeForTableFromTuples_Mod1(t_name_columns, t_w_columns)+ "\n" \
                    + ("*" *width) + "\n" \
                    + (" " * width) + "\n"
-        for j in adventures:
+        count_List =1       #
+        Printar_lista = True             #
+        Tuples_length_correct = False    #
+        Scrollear = True
+        while Scrollear:
             # En este caso tupla_t recoge la ID de la aventura, el nombre de la aventura y la descripción de esta
-            tupla_t =(str(j), str(adventures[j]["Name"]), str(adventures[j]["Description"]))
-            if len(t_w_columns) > len(tupla_t):
-                t_w_columns = tuple_cutter(t_w_columns, tupla_t)
-            elif len(t_w_columns) > len(tupla_t):
-                t_w_columns =tuple_extender(t_w_columns, tupla_t)
+            tupla_t =(str(count_List), str(adventures[count_List]["Username"]), str(adventures[count_List]["Name"]), str(adventures[count_List]["Characher_Name"]), str(adventures[count_List]["Date"]))
+            if Tuples_length_correct == False:
+                if len(t_w_columns) > len(tupla_t):
+                    t_w_columns = tuple_cutter(t_w_columns, tupla_t)
+                elif len(t_w_columns) > len(tupla_t):
+                    t_w_columns =tuple_extender(t_w_columns, tupla_t)
+                Tuples_length_correct = True
             to_print =to_print + getFormatedBodyColumns(tupla_t, t_w_columns) + (" " *width) +"\n"
-        return(to_print)
+            if count_List >= 3:
+                if (count_List)%3 ==0 or count_List == len(adventures):
+                    print(to_print)
+                    scroll = input("Scroll down: + / Scroll up: - / OUT: 0) ")
+                    while scroll != "+" and scroll != "-" and scroll != "0" and scroll.isdigit() == False:
+                        scroll = input("Scroll down: + / Scroll up: - / OUT: 0) ")
+                    if scroll.isdigit():
+                        if int(scroll) > 0 and int(scroll) <= len(adventures):
+                            Num_elegido = scroll
+                            # print(f"Aventura {Num_elegido} elegida")
+                            Printar_lista = False
+                            Scrollear = False
+                    print("")
+                    to_print = ""
+                    if scroll == "0":
+                        break
+                    if scroll == "-" and count_List > 2:
+                        if count_List == 3:
+                            count_List =0
+                        else:
+                            if count_List == len(adventures):
+                                count_List = count_List -4
+                            else:
+                                count_List =count_List -6
+            if count_List < (len(adventures)):
+                count_List += 1
+            # if count_List == len(adventures):
+            #     Scrollear = False
+        if Printar_lista == True:
+            print(to_print)
+        return Num_elegido, adventures[int(Num_elegido)]["Username"], adventures[int(Num_elegido)]["Name"], adventures[int(Num_elegido)]["Id_Adventure"]
     except:
         if ErrorT_SP:
             return "No todos los valores de la tupla son numeros enteros"
@@ -1389,35 +1574,6 @@ def getFormatedAdventures(adventures):
                    " titulos de las columnas"
         else:
             return "Error en la ejecución de la función getFormatedAdventures"
-
-
-# Dentro de esta función esta formatText_Mod1, una modificación de formatText, que también divide el texto en lineas
-# la diferencia es que cada linea será un elemento de una lista.
-#
-# Tenerlo dentro de una lista nos sera util para printar luego varios textos,
-# seleccionando que parte de cada uno debe aparecer en que momento
-#
-# Los elementos de la funcion formatText_Mod1, las lineas (en formato string), ya vienen todas con el mismo ancho lenLine en los datos
-# de entrada, cuando las palabras no llegan a esa longitud, añade espacios " " que al printar no se ven
-# pero hacen que la longitud de ese string sea la misma.
-
-# La función getFormatedBodyColumns primero obtiene los parrafos que imprimira uno al lado del otro, estos
-# parrafos se obtienen con la función formatText_Mod1 en forma de lista donde cada elemento string es una linea.
-#
-# Define la variable to_print, que sera toodo lo que tiene que printar, incluyendo espacios entre lineas y saltos de linea
-#
-# Necesitamos obtener la maxima altura de los parrafos, eso es max_h, la altura de los parrafos sera equivalente a la cantidad
-# de elementos que tiene su lista, casa elemento es una linea, cuando acaba debe haber salto de pagina.
-# Todos los parrafos que sean menores a max altura, les añadimos tantas lineas vacias de espacios (equivalentes al ancho maximo)
-# como lineas o elementos de lista le falten para igualar esa maxima altura.
-#
-# Vamos a colocar en la variable to_print tooodo lo que queremos imprimir. La idea es que queremos poner la primera linea del primer
-# parrafo, luego la primera linea del segundo parrafo, luego la primera del tercer parrafo, asi sucesivamente hasta llegar al salto de linea
-# entonces colocaremos las segundas lineas de cada parrafo.
-#
-# Estas lineas tienen todas el mismo ancho, junto con los 2 espacios minimo que las separan. Ademas, todos los parrafos tienen la misma cantidad
-# de lineas, aunque a partir de cierto punto esten vacias y solo sean espacios (Es necesario para que se coloque todo a sitio)
-
 
 def getFormatedBodyColumns(tupla_texts,tupla_sizes,margin ="  "):
     def formatText_Mod1(text, lenLine):
@@ -1532,4 +1688,4 @@ def getReplayAdventures():
     return res2
 
 
-
+main()
