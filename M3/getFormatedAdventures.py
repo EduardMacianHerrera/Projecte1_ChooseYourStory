@@ -1,6 +1,6 @@
-from get_adventures_with_char import get_adventures_with_chars
-
-dic_adventures = get_adventures_with_chars()
+# from get_adventures_with_char import get_adventures_with_chars
+#
+# dic_adventures = get_adventures_with_chars()
 
 # El diccionario de ejemplo basico
 dic_adventures ={
@@ -8,7 +8,15 @@ dic_adventures ={
 2:{"Name":"Aventura 2", "Description":"Es la aventura 2", "Charachers":["c2", "c3", "c4"]},
 3:{"Name":"Aventura 3", "Description":"Es la aventura 3", "Charachers":["c1", "c2", "c4"]},
 4:{"Name":"Aventura 4", "Description":"Es la aventura 4", "Charachers":["c2", "c3", "c4"]},
-5:{"Name":"Aventura 5", "Description":"Es la aventura 5", "Charachers":["c2", "c3", "c4"]}
+5:{"Name":"Aventura 5", "Description":"Es la aventura 5", "Charachers":["c2", "c3", "c4"]},
+6:{"Name":"Aventura 6", "Description":"Es la aventura 6", "Charachers":["c1", "c3", "c5"]},
+7:{"Name":"Aventura 7", "Description":"Es la aventura 7", "Charachers":["c1", "c2", "c4"]},
+8:{"Name":"Aventura 8", "Description":"Es la aventura 8", "Charachers":["c2", "c3", "c5"]},
+9:{"Name":"Aventura 9", "Description":"Es la aventura 9", "Charachers":["c1", "c2", "c4"]},
+10:{"Name":"Aventura 10", "Description":"Es la aventura 10", "Charachers":["c2", "c3", "c4"]},
+11:{"Name":"Aventura 11", "Description":"Es la aventura 11", "Charachers":["c2", "c3", "c4"]},
+12:{"Name":"Aventura 12", "Description":"Es la aventura 12", "Charachers":["c1", "c3", "c5"]},
+13:{"Name":"Aventura 13", "Description":"Es la aventura 13", "Charachers":["c1", "c2", "c4"]},
 }
 
 # Otro diccionario de ejemplo mas enrevesado, con parrafos de distinta longitud para encontrar errores
@@ -153,6 +161,8 @@ def getFormatedAdventures(adventures, width, t_name_columns, t_w_columns):
                 else:
                     return "La funcion getFormatedBodyColumns no se ha ejecutado correctamente"
         # A partir de aqui deja de declarar otras funciones y empieza el codigo de la funcion
+        ErrorT_SP = False
+        Error_long = False
         for f in t_w_columns:
             if type(f) != int:
                 ErrorT_SP =True
@@ -176,15 +186,60 @@ def getFormatedAdventures(adventures, width, t_name_columns, t_w_columns):
                    + getHeadeForTableFromTuples_Mod1(t_name_columns, t_w_columns)+ "\n" \
                    + ("*" *width) + "\n" \
                    + (" " * width) + "\n"
-        for j in adventures:
+        count_List =1       #
+        Printar_lista = True             #
+        Tuples_length_correct = False    #
+        Scrollear = True
+        while Scrollear:
             # En este caso tupla_t recoge la ID de la aventura, el nombre de la aventura y la descripción de esta
-            tupla_t =(str(j), str(adventures[j]["Name"]), str(adventures[j]["Description"]))
-            if len(t_w_columns) > len(tupla_t):
-                t_w_columns = tuple_cutter(t_w_columns, tupla_t)
-            elif len(t_w_columns) > len(tupla_t):
-                t_w_columns =tuple_extender(t_w_columns, tupla_t)
+            tupla_t =(str(count_List), str(adventures[count_List]["Name"]), str(adventures[count_List]["Description"]))
+            if Tuples_length_correct == False:
+                if len(t_w_columns) > len(tupla_t):
+                    t_w_columns = tuple_cutter(t_w_columns, tupla_t)
+                elif len(t_w_columns) > len(tupla_t):
+                    t_w_columns =tuple_extender(t_w_columns, tupla_t)
+                Tuples_length_correct = True
             to_print =to_print + getFormatedBodyColumns(tupla_t, t_w_columns) + (" " *width) +"\n"
-        return(to_print)
+            if count_List == 3 or count_List > 5:
+                if (count_List)%3 ==0 or count_List == len(adventures):
+                    print(to_print)
+                    scroll = input("Scroll down: + / Scroll up: - / OUT: 0) ")
+                    while scroll != "+" and scroll != "-" and scroll != "0" and scroll.isdigit() == False:
+                        scroll = input("Scroll down: + / Scroll up: - / OUT: 0) ")
+                    if scroll.isdigit():
+                        if int(scroll) > 0 and int(scroll) < len(adventures):
+                            Num_elegido = scroll
+                            print(f"Aventura {Num_elegido} elegida")
+                            Printar_lista = False
+                            Scrollear = False
+                        # while scroll.isdigit() and Scrollear == True:
+                        #     if int(scroll) > 0 and int(scroll) < len(adventures):
+                        #         Num_elegido = scroll
+                        #         print(f"Aventura {Num_elegido} elegida")
+                        #         Printar_lista = False
+                        #         Scrollear = False
+                        #     else:
+                        #         scroll = input("Scroll down: + / Scroll up: - / OUT: 0) ")
+                        # else:
+                        #     if Scrollear == True:
+                        #         scroll = input("Scroll down: + / Scroll up: - / OUT: 0) ")
+                    print("")
+                    to_print = ""
+                    if scroll == "0":
+                        break
+                    if scroll == "-" and count_List > 2:
+                        if count_List == 3:
+                            count_List =0
+                        else:
+                            if count_List == len(adventures):
+                                count_List = count_List -4
+                            else:
+                                count_List =count_List -6
+            if count_List < (len(adventures)):
+                count_List += 1
+        if Printar_lista == True:
+            print(to_print)
+        return Num_elegido
     except:
         if ErrorT_SP:
             return "No todos los valores de la tupla son numeros enteros"
@@ -197,4 +252,6 @@ def getFormatedAdventures(adventures, width, t_name_columns, t_w_columns):
 
 tuplas_nombres = ("Id Adventure", "Adventure", "Description", "Otra info")
 tuplas_anchos = (30, 15)
-print(getFormatedAdventures(dic_adventures, 120, tuplas_nombres, tuplas_anchos))
+Numer_Elegido = getFormatedAdventures(dic_adventures, 120, tuplas_nombres, tuplas_anchos)
+print(Numer_Elegido)
+
