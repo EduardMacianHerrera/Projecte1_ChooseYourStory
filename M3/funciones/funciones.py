@@ -175,14 +175,14 @@ def main():
 
 
 
-            idAdventure = int(getFormatedAdventures(adventures))
+            idAdventure = getFormatedAdventures(adventures)
 
 
-            if idAdventure == 0:
+            if idAdventure == "0":
                 flag_aventura = False
                 flag_menuPrincipal = True
                 break
-
+            idAdventure = int(idAdventure)
             print(getHeader(adventures[idAdventure]["Name"]))
             fila1 = (list(adventures[idAdventure].keys())[0] + ":",adventures[idAdventure][list(adventures[idAdventure].keys())[0]])
             fila2 = (list(adventures[idAdventure].keys())[1] + ":",adventures[idAdventure][list(adventures[idAdventure].keys())[1]])
@@ -214,6 +214,7 @@ def main():
             if idCharacter == 0:
                 flag_characters = False
                 flag_aventura = True
+                break
 
             print(f'You have selected play with {characters[idCharacter]}\n')
             input("Enter to continue")
@@ -239,9 +240,11 @@ def main():
 
         while flag_replay:
             games = getGamesInfo()
+            print(games)
             tuplas_nombres = ("Id", "Username", "Name", "Character_name", "Date")
             tuplas_anchos = (20, 20, 20, 20, 20)
             width = 120
+            print(getFormatedGames(games, width, tuplas_nombres, tuplas_anchos))
             Id_Game, Username, Nombre_Aventura, Id_Adventure = getFormatedGames(games, width, tuplas_nombres, tuplas_anchos)
             game_context = {"idGame": Id_Game, "idAdventure": Id_Adventure, "idUser": 2, "username":"user","idChar": 7, "name_adventure": "En busca de la gráfica perdida"}
             tupla = getChoices()
@@ -285,6 +288,7 @@ def repeticion(id_by_steps,idAnswer_ByStep_Adventure,idFirstStep,idOpcion):
 
     if id_by_steps[idFirstStep]["Final_Step"] == 1:
         print()
+        normal(fin)
         input("Enter to continue\n\n")
         return
     print("\nOptions: ")
@@ -348,14 +352,6 @@ def elecciones(id_by_steps,idAnswer_ByStep_Adventure,idFirstStep):
     input("Enter to continue\n\n")
     nextStep = idAnswer_ByStep_Adventure[keyPaso]["NextStep_Adventure"]
     elecciones(id_by_steps,idAnswer_ByStep_Adventure,nextStep)
-
-
-
-
-
-
-
-
 
 
 def createConn():
@@ -1356,6 +1352,7 @@ def getFormatedAdventures(adventures):
                     print("")
                     to_print = ""
                     if scroll == "0":
+                        Num_elegido = scroll
                         break
                     if scroll == "-" and count_List > 2:
                         if count_List == 3:
@@ -1525,6 +1522,7 @@ def getFormatedGames(adventures, width, t_name_columns, t_w_columns):
         Printar_lista = True             #
         Tuples_length_correct = False    #
         Scrollear = True
+        print("Punto1")
         while Scrollear:
             # En este caso tupla_t recoge la ID de la aventura, el nombre de la aventura y la descripción de esta
             tupla_t =(str(count_List), str(adventures[count_List]["Username"]), str(adventures[count_List]["Name"]), str(adventures[count_List]["Characher_Name"]), str(adventures[count_List]["Date"]))
@@ -1538,9 +1536,9 @@ def getFormatedGames(adventures, width, t_name_columns, t_w_columns):
             if count_List >= 3:
                 if (count_List)%3 ==0 or count_List == len(adventures):
                     print(to_print)
-                    scroll = input("Scroll down: + / Scroll up: - / OUT: 0) ")
+                    scroll = input("Scroll down: + / Scroll up: -) ")
                     while scroll != "+" and scroll != "-" and scroll != "0" and scroll.isdigit() == False:
-                        scroll = input("Scroll down: + / Scroll up: - / OUT: 0) ")
+                        scroll = input("Scroll down: + / Scroll up: -) ")
                     if scroll.isdigit():
                         if int(scroll) > 0 and int(scroll) <= len(adventures):
                             Num_elegido = scroll
@@ -1573,7 +1571,7 @@ def getFormatedGames(adventures, width, t_name_columns, t_w_columns):
             return "Los espacios de separación entre parrafos son demasiado cortos para encajar los" \
                    " titulos de las columnas"
         else:
-            return "Error en la ejecución de la función getFormatedAdventures"
+            return "Error en la ejecución de la función getFormatedGames"
 
 def getFormatedBodyColumns(tupla_texts,tupla_sizes,margin ="  "):
     def formatText_Mod1(text, lenLine):
@@ -1688,4 +1686,4 @@ def getReplayAdventures():
     return res2
 
 
-main()
+
