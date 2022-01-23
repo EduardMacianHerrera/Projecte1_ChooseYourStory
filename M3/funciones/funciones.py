@@ -240,7 +240,6 @@ def main():
 
         while flag_replay:
             games = getGamesInfo()
-            print(games)
             tuplas_nombres = ("Id", "Username", "Name", "Character_name", "Date")
             tuplas_anchos = (20, 20, 20, 20, 20)
             width = 120
@@ -1522,7 +1521,6 @@ def getFormatedGames(adventures, width, t_name_columns, t_w_columns):
         Printar_lista = True             #
         Tuples_length_correct = False    #
         Scrollear = True
-        print("Punto1")
         while Scrollear:
             # En este caso tupla_t recoge la ID de la aventura, el nombre de la aventura y la descripción de esta
             tupla_t =(str(count_List), str(adventures[count_List]["Username"]), str(adventures[count_List]["Name"]), str(adventures[count_List]["Characher_Name"]), str(adventures[count_List]["Date"]))
