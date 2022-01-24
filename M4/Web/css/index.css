@@ -1,0 +1,254 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	background-color: #1b2d3f;
+	font-family: sans-serif;
+}
+
+
+/*HEADER*/
+
+header{
+	width: 100%;
+	height: 80px;
+	position: fixed;
+	top:0px;
+	background-color: #111111;
+	min-width: 1280px;
+	/*Flexbox*/
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.headerLogo{
+	width: 30%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	color:white;
+}
+
+.headerLogo img{
+	margin: 10px 10px 10px 20px;
+	width: 64px;
+	height: 64px;
+}
+
+.headerMenu{
+	width: 70%;
+	/*Flexbox*/
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.headerMenu nav{
+	margin-right: 20px;
+	/*Flexbox*/
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+
+.headerMenu a {
+	display: inline-block;
+	color: white;
+	font-size: 20px;
+	padding: 20px;
+	text-decoration: none;
+}
+
+header div nav a:hover{
+	background-color: rgb(97, 97, 97);
+	border-bottom: solid red 5px;
+	border-radius: 5px;
+}
+
+form{
+	margin-right: 20px;
+}
+
+input[type="search"]{
+
+	border-radius: 20px;
+	height: 30px;
+	width: 200px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+/*HEADER*/
+
+
+
+/*FOOTER*/
+
+footer{
+	background-color: #111111;
+	width: 100%;
+	height: 70px;
+
+
+	/*Fexbox*/
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+footer div a img{
+	height: 30px;
+	width: 30px;
+	margin: 5px 10px;
+}
+
+.media{
+	margin-right: 20px;
+}
+
+
+footer p{
+	color:white;
+	margin-left: 20px;
+	font-style: italic;
+}
+
+/*FOOTER*/
+
+
+/*SECTION MENU*/
+.sectionMenu{
+	margin-top: 80px;
+	width: 100%;
+	background-color: #121d29;
+	/*Flexbox*/
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+
+.sectionMenu a{
+	display: inline-block;
+	padding: 10px;
+	text-decoration: none;
+	color: white;
+}
+
+
+.sectionMenu a:hover{
+	background-color: rgb(97, 97, 97);
+}
+
+/*SECTION MENU*/
+
+
+/*MAIN*/
+
+.main h2, h3{
+	color:rgb(199, 199, 199);
+}
+
+.main{
+	width: 670px;
+	margin:auto;
+	margin-top: 50px;
+	min-width: 670px;
+}
+
+
+article{
+	height: 300px;
+	background-color: #1b2d3f;
+	margin:50px 0px;
+	border: solid #cb1326 2px;
+	border-radius: 10px;
+	color:rgb(199, 199, 199);
+}
+
+article h2{
+	margin:10px;
+}
+
+article p{
+	text-align: justify;
+}
+
+
+.articleP1{
+	text-indent:20px; /*Sangria primer parrafo*/
+}
+
+
+article p a{
+	font-style: italic;
+}
+
+
+.article {
+
+	/*Grid layaut*/
+	display: grid;
+	grid-template-columns: 70% 30%;
+	grid-template-rows: 70% 30%;
+	grid-template-areas: "area1 area2"
+						 "area3 area3";
+	row-gap: 10px;
+}
+
+.articleImg{
+	grid-area: area2;
+	background-image: url("../imgs/imagenProvisional.png");
+	background-position: center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	margin: 10px;
+}
+
+.gitImg{
+
+	grid-area: area2;
+	background-image: url("../imgs/gitLogo.png");
+	background-position: center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	margin: 10px;
+	border-radius: 100%;
+}
+
+
+.articleP1{
+	grid-area: area1;
+}
+
+.articleP2{
+	grid-area: area3;
+}
+
+
+.article p{
+	margin: 10px;
+}
+
+#seccion1, #seccion2, #seccion3{
+	margin: 20px;
+}
+
+.gitLink{
+	color: white;
+}
+
+
+
+/*MAIN*/
+/*Prueba*/
